@@ -42,10 +42,17 @@ Leaflet: To create the mapping
 
 ## Datasets
 https://www.concert-diary.com/
+
 https://www.songkick.com/developer/past-events-for-artist
+
 https://www.predicthq.com/events/concerts
+
 https://developer.twitter.com/en/products/twitter-api
+
 https://www.billboard.com/charts/search 
+
 https://www.chartmetric.com/product/spotify-analytics
+
 https://soundcharts.com/spotify-analytics
+
 https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks
