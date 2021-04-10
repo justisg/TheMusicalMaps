@@ -15,13 +15,13 @@ Zhengyang: Developing specialist
 Daniel is a 3rd year Computer Science major. He has worked with many different programming languages and tools and is responsible for data analysis and scripting.
 <br><img src = "https://i.imgur.com/iEHPmaK.jpg" height = "300px">
 
-##overview
+## overview
 Our group is investigating the changing trends of music and listening of users over time, specifically focusing on data before and during the COVID-19 pandemic. This is significant to see the ways in which habits and tendencies are altered throughout hardship, especially given the importance of the internet and online entertainment to connectivity during quarantines.
 
-##Methadology
+## Methadology
 Web mapping can be used to visualize location data and create interactive web maps. As we believe that music trends and popularity are heavily tied with location information, we chose to use web mapping as a medium for this project to assist us in visualizing and presenting the data.
 
-##workflow
+## workflow
 Week 2: Project Proposal and Plan; Research
 Week 3: Organize/Clean Data
 Week 4: Storyboard Website; About Page 
@@ -33,14 +33,14 @@ Week 9: Interactivity and usability
 Week 10: Clean Website
 Finals: Final Presentation
 
-##technical scope
+## technical scope
 HTML, CSS: For building the website
 Git: For working collaboratively and using version control
 Javascript: For working with Leaflet and front-end
 Python: For scripting, data analysis and working with the twitter API 
 Leaflet: To create the mapping
 
-##datasets
+## datasets
 https://www.concert-diary.com/
 https://www.songkick.com/developer/past-events-for-artist
 https://www.predicthq.com/events/concerts
