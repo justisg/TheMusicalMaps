@@ -2,7 +2,7 @@
 ## Introduction
 We are The Music Maps. Our goal is to understand the trends in music over the past few years, and see if modern changes to society due to the pandemic have affected our taste in music and the frequency we consume it in. We hope to visualize this data in an easy to understand way, so that we may see which genres of music are trending and whether the location and amount of listeners have changed over the last few years.
 
-## team members
+## Team members
 Kai: UI/UX Specialist
 Kai is a 4th year Design Media Arts major. He has experience designing websites and hopes to contribute to the group by creating readable and accessible websites.
 <br><img src = "https://kaisanwatanabe.github.io/DH151/week%201/images/IMG_2258.PNG" height = "300px">
