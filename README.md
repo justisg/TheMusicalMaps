@@ -1,5 +1,5 @@
 # TheMusicalMaps
-## introduction
+## Introduction
 We are The Music Maps. Our goal is to understand the trends in music over the past few years, and see if modern changes to society due to the pandemic have affected our taste in music and the frequency we consume it in. We hope to visualize this data in an easy to understand way, so that we may see which genres of music are trending and whether the location and amount of listeners have changed over the last few years.
 
 ## team members
@@ -15,7 +15,7 @@ Zhengyang: Developing specialist
 Daniel is a 3rd year Computer Science major. He has worked with many different programming languages and tools and is responsible for data analysis and scripting.
 <br><img src = "https://i.imgur.com/iEHPmaK.jpg" height = "300px">
 
-## overview
+## Overview
 Our group is investigating the changing trends of music and listening of users over time, specifically focusing on data before and during the COVID-19 pandemic. This is significant to see the ways in which habits and tendencies are altered throughout hardship, especially given the importance of the internet and online entertainment to connectivity during quarantines.
 
 ## Methadology
@@ -33,14 +33,14 @@ Week 9: Interactivity and usability
 Week 10: Clean Website
 Finals: Final Presentation
 
-## technical scope
+## Technical scope
 HTML, CSS: For building the website
 Git: For working collaboratively and using version control
 Javascript: For working with Leaflet and front-end
 Python: For scripting, data analysis and working with the twitter API 
 Leaflet: To create the mapping
 
-## datasets
+## Datasets
 https://www.concert-diary.com/
 https://www.songkick.com/developer/past-events-for-artist
 https://www.predicthq.com/events/concerts
