@@ -21,7 +21,7 @@ Our group is investigating the changing trends of music and listening of users o
 ## Methadology
 Web mapping can be used to visualize location data and create interactive web maps. As we believe that music trends and popularity are heavily tied with location information, we chose to use web mapping as a medium for this project to assist us in visualizing and presenting the data.
 
-## workflow
+## Workflow
 Week 2: Project Proposal and Plan; Research
 Week 3: Organize/Clean Data
 Week 4: Storyboard Website; About Page 
