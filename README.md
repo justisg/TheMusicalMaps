@@ -22,15 +22,15 @@ Our group is investigating the changing trends of music and listening of users o
 Web mapping can be used to visualize location data and create interactive web maps. As we believe that music trends and popularity are heavily tied with location information, we chose to use web mapping as a medium for this project to assist us in visualizing and presenting the data.
 
 ## Workflow
-Week 2: Project Proposal and Plan; Research
-Week 3: Organize/Clean Data
-Week 4: Storyboard Website; About Page 
-Week 5: Design and Create Map, Layers, and Objects
-Week 6: Design; Midterm Presentation
-Week 7: Mapping details and edits
-Week 8: UX/UI
-Week 9: Interactivity and usability
-Week 10: Clean Website
+Week 2: Project Proposal and Plan; Research<br>
+Week 3: Organize/Clean Data<br>
+Week 4: Storyboard Website; About Page<br>
+Week 5: Design and Create Map, Layers, and Objects<br>
+Week 6: Design; Midterm Presentation<br>
+Week 7: Mapping details and edits<br>
+Week 8: UX/UI<br>
+Week 9: Interactivity and usability<br>
+Week 10: Clean Website<br>
 Finals: Final Presentation
 
 ## Technical scope
