@@ -3,14 +3,14 @@
 
 ## Mindmaps
 ![Justis Mindmap](./Images/JMM.jpg)
-![Kai Mindmap](./KMM.png)
-![Daniel Mindmap](./DMM.jpg)
+![Kai Mindmap](./Images/KMM.png)
+![Daniel Mindmap](./Images/DMM.jpg)
 
 
 ## Crazy Eights
-![Justis Crazy Eight](./JCE.jpg)
-![Kai Crazy Eight](./KCE.png)
-![Daniel Crazy Eight](./DCE.jpg)
+![Justis Crazy Eight](./Images/JCE.jpg)
+![Kai Crazy Eight](./Images/KCE.png)
+![Daniel Crazy Eight](./Images/DCE.jpg)
 
 ## Storyboard Collection
 
