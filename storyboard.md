@@ -2,7 +2,8 @@
 ### The Musical Maps: Justis Guardia, Daniel Liu, Kai Watanabe
 
 ## Mindmaps
-<img src="./Images/JMM.jpg" width="100" height="100">
+<img src="./Images/JMM.jpg" width="500" height="500">
+
 ![Kai Mindmap](./Images/KMM.png)
 ![Daniel Mindmap](./Images/DMM.jpg)
 
