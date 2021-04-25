@@ -2,16 +2,14 @@
 ### The Musical Maps: Justis Guardia, Daniel Liu, Kai Watanabe
 
 ## Mindmaps
-<img src="./Images/JMM.jpg" width="500" height="500">
-
-![Kai Mindmap](./Images/KMM.png)
-![Daniel Mindmap](./Images/DMM.jpg)
-
+<img src="./Images/JMM.jpg" width="500">
+<img src="./Images/KMM.png" width="500">
+<img src="./Images/DMM.jpg" width="500">
 
 ## Crazy Eights
-![Justis Crazy Eight](./Images/JCE.jpg)
-![Kai Crazy Eight](./Images/KCE.png)
-![Daniel Crazy Eight](./Images/DCE.jpg)
+<img src="./Images/JCE.jpg" width="500">
+<img src="./Images/KCE.png" width="500">
+<img src="./Images/DCE.jpg" width="500">
 
 ## Storyboard Collection
 
