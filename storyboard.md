@@ -4,20 +4,24 @@
 
 ## Mindmaps
 
-Justis
+Justis:<br>
 <img src="./Images/JMM.jpg" width="400">
-Kai
+
+Kai:<br>
 <img src="./Images/KMM.png" width="600">
-Daniel
+
+Daniel:<br>
 <img src="./Images/DMM.jpg" width="500">
 
 ## Crazy Eights
 
-Justis
+Justis:<br>
 <img src="./Images/JCE.jpg" width="400">
-Kai
+
+Kai:<br>
 <img src="./Images/KCE.png" width="600">
-Daniel
+
+Daniel:<br>
 <img src="./Images/DCE.jpg" width="500">
 
 ### Notes
