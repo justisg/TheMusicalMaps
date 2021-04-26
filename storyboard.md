@@ -2,8 +2,7 @@
 ### The Musical Maps: Justis Guardia, Daniel Liu, Kai Watanabe
 
 ## Mindmaps
-<img src="./Images/JMM.jpg" width="400">
-<img src="./Images/KMM.png" width="600">
+<img src="./Images/JMM.jpg" width="400"> <img src="./Images/KMM.png" width="600">
 <img src="./Images/DMM.jpg" width="500">
 
 ## Crazy Eights
