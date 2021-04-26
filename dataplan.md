@@ -28,7 +28,7 @@ https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-an-a
 
 https://developer.twitter.com/en/docs/twitter-api
 
-The Twitter API will be used to search for tweets related to an artist or a performance on specific dates and/or locations, such as the date of an album/song release, or near the vicinity of a performance venue. Related tweets with location data will be mapped and can be easily viewed. Specifically, we will use the Standard Search API to look for related tweets to an artist/performance, including geocode and until date as options.
+The Twitter API will be used to search for tweets related to an artist or a performance on specific dates and/or locations, such as the date of an album/song release, or near the vicinity of a performance venue. Related tweets with location data will be mapped and can be easily viewed. Specifically, we will use the Standard Search API to look for tweets related to an artist/performance, including geocode and until date as options.
 
 Useful requests:
 
