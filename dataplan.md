@@ -1,5 +1,7 @@
 # Data Plan
 
+We plan to make use of 3 APIs for our web mapping.
+
 ## Songkick API
 
 https://www.songkick.com/developer
