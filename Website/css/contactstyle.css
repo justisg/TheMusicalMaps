@@ -18,21 +18,17 @@ body,html {
 	text-align: left;
 }
 
-#map {
-	height: 100%;
-}
-
 body {
 	display: grid;
 	grid-template-rows: 80px 1fr 50px;
 	grid-template-columns: 20% 80%;
 	grid-template-areas: 
 	"header header header"
-	"sidebar content content"
-	"sidebar content content";
+	"content content content"
+	"content content content";
 }
 
-h1{
+header h1{
 	font-family: "speckdisplay";
 	font-size: 2em;
 	float:left;
@@ -49,6 +45,11 @@ header {
     vertical-align:middle;
 	
 	/* font-size: 1em; */
+}
+
+header a{
+    text-decoration: none;
+    color: black;
 }
 
 header .search-container{
@@ -95,14 +96,6 @@ header .search-container{
     padding: 1px;
 }
 
-.sidebar {
-	color: white;
-	grid-area: sidebar;
-	padding:10px;
-	background-color: rgb(255, 254, 253);;
-	overflow: auto;
-}
-
 nav{
     float: right;
 }
@@ -125,19 +118,63 @@ nav{
     color:rgb(58, 57, 55)
 }
 
-.other-pages{
-	position: inherit;
-	padding: 10px;
-	float:right;
-	text-align: right;
-}
-
 .content {
+    margin:auto;
 	grid-area: content;
+    text-align: center;
 }
 
-.footer {
-	grid-area: footer;
-	padding:10px;
-	background-color: rgb(255, 254, 253);
+.contact_container{
+    display: inline-block;
+}
+
+.contact_container input{
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+    font-size: 1em;
+    outline: none;
+    outline-width: 0px;;
+}
+
+.contact_container .name_info{
+    display: inline-block;
+    margin:20px;
+    height:40px;
+}
+
+.contact_container .email{
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    width:60%;
+    height:40px;
+}
+
+.contact_container .message{
+    display: inline-block;
+    margin: 40px;
+    resize: none;
+    width:60%;
+    height:120px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+    outline: none;
+    outline-width: 0px;;
+}
+
+.contact_container button{
+    background-color: #9CDBFF;
+    border: 1px solid black;
+    border-radius: 12px;
+    color:rgb(102, 102, 102);
+    width:40%;
+    height:40px;
+    margin:20px;
+    font-size: 1em;
+}
+
+.contact_container button:active{
+    background-color: #8fc2e0;
 }

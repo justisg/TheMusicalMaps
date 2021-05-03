@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>World</title>
+	<title>TheMusicalMaps</title>
 	<meta charset="utf-8" />
 
 	<!-- style sheets -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/mainstyle.css">
 
 	<!-- leaflet -->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -17,47 +17,35 @@
 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
 
 	<header>
-        <h1>The Musical Maps</h1>
+        <h1><a href="index.html">The Musical Maps</a></h1>
         <div class = "search-container">
             <input type="text" id = "searchbox" placeholder="search for music genre">
             <button onclick="getSearchVal()"><i class="fa fa-search"></i></button>
         </div>
         <nav>
             <ul class = "nav_links" >
-                <li><a href=""><a href="">Contact</a></li>
-                <li><a href="">About</a><br></li>
-                <li><a href="">Data</a></li>
+                <li><a href=""><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a><br></li>
+                <li><a href="data.html">Data</a></li>
             </ul>
         </nav>
-		<!-- <div class = "search-container"> -->
-			<!-- <input type="text" id="fname" name="fname"> -->
-		<!-- </div> -->
-		<!-- <div class = "other-pages">
-			<a href="">Contact</a><br>
-			<a href="">About</a><br>
-			<a href="">Data</a>
-		</div> -->
     </header>
-    <main>
+		<div class="sidebar">
+			
+		</div>
+		<div class="content">
+			<div id="map"></div>
+		</div>
+		<!-- <div class="footer">
+			Source: <a href="https://www.researchgate.net/post/What-is-the-greatest-online-data-set-for-earthquakes">Earthquake Forum @ researchgate</a>
+		</div> -->
 
-    </main>
-	<div class="sidebar">
-		
-	</div>
-	<div class="content">
-		<div id="map"></div>
-	</div>
-	<!-- <div class="footer">
-		Source: <a href="https://www.researchgate.net/post/What-is-the-greatest-online-data-set-for-earthquakes">Earthquake Forum @ researchgate</a>
-	</div> -->
-
-	<script src="js/map.js"></script>
-    <script src="js/searchbar.js"></script>
+		<script src="js/map.js"></script>
+		<script src="js/searchbar.js"></script>
 
 </body>
 </html>
