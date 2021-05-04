@@ -100,104 +100,84 @@ let data = [
             {
                 "name": "Luke Combs",
                 "skid": 8782319,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Morgan Wallen",
                 "skid": 8964794,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Kane Brown",
                 "skid": 3587911,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Maren Morris",
                 "skskid": 2055882,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Jason Aldean",
                 "skid": 486575,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Sam Hunt",
                 "skid": 4150076,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Gabby Barrett",
                 "skid": 7377954,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Blake Shelton",
                 "skid": 565207,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Thomas Rhett",
                 "skid": 4254071,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Dan + Shay",
                 "skid": 7775839,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
         ],
         "artists2019": [
             {
                 "name": "Luke Combs",
                 "skid": 8782319,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Dan + Shay",
                 "skid": 7775839,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Kane Brown",
                 "skid": 3587911,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Thomas Rhett",
                 "skid": 4254071,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Florida Georgia Line",
                 "skid": 4160206,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Chris Stapleton",
                 "skid": 793839,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Morgan Wallen",
                 "skid": 8964794,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Maren Morris",
                 "skid": 2055882,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Jason Aldean",
                 "skid": 486575,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
             {
                 "name": "Blake Shelton",
                 "skid": 565207,
-                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
             },
         ],
     },
@@ -698,10 +678,10 @@ function loadAndMapData(index) {
         data[index].color2020 = color1;
         data[index].color2019 = color2;
         data[index].artists2020.forEach(function(artist) {
-            songKick(index, `http://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist.name, color1);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist.name, color1);
         });
         data[index].artists2019.forEach(function(artist) {
-            songKick(index, `http://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist.name, color2);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist.name, color2);
         });
         markers[index].addTo(map);
         showing[index] = true;
