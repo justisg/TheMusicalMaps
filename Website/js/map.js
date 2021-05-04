@@ -2,19 +2,671 @@
 let map;
 let lat = 0;
 let lon = 0;
-let zl = 3;
+let zl = 2;
 
+let data = [
+    //Classical
+    {
+        "name": "Classical",
+        "color2019": null,
+        "color2020": null,
+        "artists2020": [
+            {
+                "name": "The Piano Guys",
+                "skskid": 5872269,
+            },
+            {
+                "name": "Lindsey Stirling",
+                "skskid": 5429218,
+            },
+            {
+                "name": "Yo-Yo Ma",
+                "skskid": 147314,
+            },
+            {
+                "name": "Max Richter",
+                "skskid": 196980,
+            },
+            {
+                "name": "Yiruma",
+                "skid": 299146,
+            },
+            {
+                "name": "Andrea Bocelli",
+                "skid": 475292,
+            },
+            {
+                "name": "San Francisco Symphony",
+                "skid": 408764,
+            },
+            {
+                "name": "Lang Lang",
+                "skid": 188643,
+            },
+            {
+                "name": "London Philharmonic Orchestra",
+                "skid": 242113,
+            },
+        ],
+        "artists2019": [
+            {
+                "name": "Andrea Bocelli",
+                "skid": 475292,
+            },
+            {
+                "name": "The Piano Guys",
+                "skid": 5872269,
+            },
+            {
+                "name": "Sarah Brightman",
+                "skid": 399529,
+            },
+            {
+                "name": "Lindsey Stirling",
+                "skid": 5429218,
+            },
+            {
+                "name": "Carpenters",
+                "skid": 86170,
+            },
+            {
+                "name": "Michael Bolton",
+                "skid": 182931,
+            },
+            {
+                "name": "Yo-Yo Ma",
+                "skid": 147314,
+            },
+            {
+                "name": "Royal Philharmonic Orchestra",
+                "skid": 170809,
+            },
+            {
+                "name": "2Cellos",
+                "skid": 4392693,
+            },
+            {
+                "name": "The Texas Tenors",
+                "skid": 529822,
+            },
+        ],
+    },
+    //Country
+    {
+        "name": "Country",
+        "color2019": null,
+        "color2020": null,
+        "artists2020": [
+            {
+                "name": "Luke Combs",
+                "skid": 8782319,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Morgan Wallen",
+                "skid": 8964794,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Kane Brown",
+                "skid": 3587911,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Maren Morris",
+                "skskid": 2055882,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Jason Aldean",
+                "skid": 486575,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Sam Hunt",
+                "skid": 4150076,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Gabby Barrett",
+                "skid": 7377954,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Blake Shelton",
+                "skid": 565207,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Thomas Rhett",
+                "skid": 4254071,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Dan + Shay",
+                "skid": 7775839,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+        ],
+        "artists2019": [
+            {
+                "name": "Luke Combs",
+                "skid": 8782319,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Dan + Shay",
+                "skid": 7775839,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Kane Brown",
+                "skid": 3587911,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Thomas Rhett",
+                "skid": 4254071,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Florida Georgia Line",
+                "skid": 4160206,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Chris Stapleton",
+                "skid": 793839,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Morgan Wallen",
+                "skid": 8964794,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Maren Morris",
+                "skid": 2055882,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Jason Aldean",
+                "skid": 486575,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+            {
+                "name": "Blake Shelton",
+                "skid": 565207,
+                "img": "https://i.scdn.co/image/dce9233b9287967804fa2c000726c8abf4ffaec8",
+            },
+        ],
+    },
+    //Electronic
+    {
+        "name": "Electronic",
+        "color2019": null,
+        "color2020": null,
+        "artists2020": [
+            {
+                "name": "Lady Gaga",
+                "skid": 974908,
+            },
+            {
+                "name": "The Chainsmokers",
+                "skid": 2867816,
+            },
+            {
+                "name": "Kygo",
+                "skskid": 7738429,
+            },
+            {
+                "name": "Marshmello",
+                "skid": 8613384,
+            },
+            {
+                "name": "Illenium",
+                "skid": 7668859,
+            },
+            {
+                "name": "Calvin Harris",
+                "skid": 82547,
+            },
+            {
+                "name": "Regard",
+                "skid": 353321,
+            },
+            {
+                "name": "Surf Mesa",
+                "skid": 10150988,
+            },
+            {
+                "name": "Gryffin",
+                "skid": 8501183,
+            },
+            {
+                "name": "ODESZA",
+                "skid": 6018139,
+            },
+        ],
+        "artists2019": [
+            {
+                "name": "The Chainsmokers",
+                "skid": 2867816,
+            },
+            {
+                "name": "Marshmello",
+                "skid": 8613384,
+            },
+            {
+                "name": "DJ Snake",
+                "skid": 297319,
+            },
+            {
+                "name": "Lady Gaga",
+                "skid": 974908,
+            },
+            {
+                "name": "Avicii",
+                "skid": 3117626,
+            },
+            {
+                "name": "ODESZA",
+                "skid": 6018139,
+            },
+            {
+                "name": "Illenium",
+                "skid": 7668859,
+            },
+            {
+                "name": "Calvin Harris",
+                "skid": 82547,
+            },
+            {
+                "name": "Alan Walker",
+                "skid": 8754489,
+            },
+            {
+                "name": "Clean Bandit",
+                "skid": 3376301,
+            },
+        ],
+    },
+    //Indie
+	{
+        "name": "Indie",
+        "color2019": null,
+        "color2020": null,
+        "artists2020": [
+            {
+                "name": "Bad Bunny",
+                "skskid": 9059639,
+            },
+            {
+                "name": "BTS",
+                "skskid": 135912,
+            },
+            {
+                "name": "Trippie Redd",
+                "skskid": 9212594,
+            },
+            {
+                "name": "XXXTENTACION",
+                "skskid": 8997064,
+            },
+            {
+                "name": "Morgan Wallen",
+                "skid": 8964794,
+            },
+            {
+                "name": "Jason Aldean",
+                "skid": 486575,
+            },
+            {
+                "name": "NF",
+                "skid": 249773,
+            },
+            {
+                "name": "Five Finger Death Punch",
+                "skid": 577269,
+            },
+            {
+                "name": "Joji",
+                "skid": 9214309,
+            },
+            {
+                "name": "Lauren Daigle",
+                "skid": 7949878,
+            },
+        ],
+        "artists2019": [
+            {
+                "name": "BTS",
+                "skid": 135912,
+            },
+            {
+                "name": "Lauren Daigle",
+                "skid": 7949878,
+            },
+            {
+                "name": "XXXTENTACION",
+                "skid": 8997064,
+            },
+            {
+                "name": "NF",
+                "skid": 249773,
+            },
+            {
+                "name": "Zac Brown Band",
+                "skid": 514278,
+            },
+            {
+                "name": "The Lumineers",
+                "skid": 2827981,
+            },
+            {
+                "name": "Anderson .Paak",
+                "skid": 7286084,
+            },
+            {
+                "name": "Five Finger Death Punch",
+                "skid": 577269,
+            },
+            {
+                "name": "Eric Clapton",
+                "skid": 387667,
+            },
+            {
+                "name": "Sammy Hagar",
+                "skid": 186864,
+            },
+        ],
+    },
+    //Pop
+	{
+        "name": "Pop",
+        "color2019": null,
+        "color2020": null,
+        "artists2020": [
+            {
+                "name": "The Weeknd",
+                "skskid": 4363463,
+            },
+            {
+                "name": "Dua Lipa",
+                "skskid": 8310783,
+            },
+            {
+                "name": "Harry Styles",
+                "skskid": 5820634,
+            },
+            {
+                "name": "Lewis Capaldi",
+                "skskid": 7156949,
+            },
+            {
+                "name": "Post Malone",
+                "skid": 8508053,
+            },
+            {
+                "name": "Doja Cat",
+                "skid": 8030683,
+            },
+            {
+                "name": "Justin Bieber",
+                "skid": 2596951,
+            },
+            {
+                "name": "Lizzy",
+                "skid": 531361,
+            },
+            {
+                "name": "Maroon 5",
+                "skid": 181875,
+            },
+            {
+                "name": "Selena Gomez",
+                "skid": 1059348,
+            },
+        ],
+        "artists2019": [
+            {
+                "name": "Ariana Grande",
+                "skid": 4971683,
+            },
+            {
+                "name": "Post Malone",
+                "skid": 8508053,
+            },
+            {
+                "name": "Khalid",
+                "skid": 894756,
+            },
+            {
+                "name": "Jonas Brothers",
+                "skid": 110449,
+            },
+            {
+                "name": "Halsey",
+                "skid": 8067338,
+            },
+            {
+                "name": "Panic! At The Disco",
+                "skid": 139037,
+            },
+            {
+                "name": "Shawn Mendes",
+                "skid": 38125949,
+            },
+            {
+                "name": "Billie Eilish",
+                "skid": 8913479,
+            },
+            {
+                "name": "Lizzo",
+                "skid": 5031783,
+            },
+            {
+                "name": "Ed Sheeran",
+                "skid": 2083334,
+            },
+        ],
+    },
+    //Rap
+    {
+        "name": "Rap",
+        "color2019": null,
+        "color2020": null,
+        "artists2020": [
+            {
+                "name": "Roddy Ricch",
+                "skskid": 9728669,
+            },
+            {
+                "name": "DaBaby",
+                "skskid": 9883244,
+            },
+            {
+                "name": "Lil Baby",
+                "skskid": 9438699,
+            },
+            {
+                "name": "Drake",
+                "skskid": 556955,
+            },
+            {
+                "name": "Megan Thee Stallion",
+                "skid": 9701784,
+            },
+            {
+                "name": "Juice WRLD",
+                "skid": 9550809,
+            },
+            {
+                "name": "Pop Smoke",
+                "skid": 10071322,
+            },
+            {
+                "name": "Arizona Zervas",
+                "skid": 8896099,
+            },
+            {
+                "name": "Lil Uzi Vert",
+                "skid": 8081893,
+            },
+            {
+                "name": "Travis Scott",
+                "skid": 6008144,
+            },
+        ],
+        "artists2019": [
+            {
+                "name": "Post Malone",
+                "skid": 8508053,
+            },
+            {
+                "name": "Lil Nas X",
+                "skid": 10001194,
+            },
+            {
+                "name": "Cardi B",
+                "skid": 8962314,
+            },
+            {
+                "name": "Travis Scott",
+                "skid": 6008144,
+            },
+            {
+                "name": "DaBaby",
+                "skid": 9883244,
+            },
+            {
+                "name": "Lizzo",
+                "skid": 5031783,
+            },
+            {
+                "name": "Swae Lee",
+                "skid": 9811034,
+            },
+            {
+                "name": "J. Cole",
+                "skid": 832745,
+            },
+            {
+                "name": "Lil Baby",
+                "skid": 9438699,
+            },
+            {
+                "name": "Drake",
+                "skid": 556955,
+            },
+        ],
+    },
+    //Rock
+    {
+        "name": "Rock",
+        "color2019": null,
+        "color2020": null,
+        "artists2020": [
+            {
+                "name": "Panic! At The Disco",
+                "skskid": 139037,
+            },
+            {
+                "name": "Machine Gun Kelly",
+                "skskid": 6630384,
+            },
+            {
+                "name": "Fleetwood Mac",
+                "skskid": 323006,
+            },
+            {
+                "name": "The Beatles",
+                "skskid": 417271,
+            },
+            {
+                "name": "twenty one pilots",
+                "skid": 3123851,
+            },
+            {
+                "name": "Queen",
+                "skid": 469904,
+            },
+            {
+                "name": "AJR",
+                "skid": 1880688,
+            },
+            {
+                "name": "Tame Impala",
+                "skid": 927852,
+            },
+            {
+                "name": "Elton John",
+                "skid": 371163,
+            },
+            {
+                "name": "Imagine Dragons",
+                "skid": 2506696,
+            },
+        ],
+        "artists2019": [
+            {
+                "name": "Panic! At The Disco",
+                "skid": 139037,
+            },
+            {
+                "name": "Queen",
+                "skid": 469904,
+            },
+            {
+                "name": "Imagine Dragons",
+                "skid": 2506696,
+            },
+            {
+                "name": "twenty one pilots",
+                "skid": 3123851,
+            },
+            {
+                "name": "The Beatles",
+                "skid": 417271,
+            },
+            {
+                "name": "Tool",
+                "skid": 521019,
+            },
+            {
+                "name": "Elton John",
+                "skid": 371163,
+            },
+            {
+                "name": "lovelytheband",
+                "skid": 9280609,
+            },
+            {
+                "name": "Mumford & Sons",
+                "skid": 2202327,
+            },
+            {
+                "name": "Hozier",
+                "skid": 7104269,
+            },
+        ],
+    },
+]
 
-
-// path to csv data
-let path = "data/query2015_2017.csv";
 // global variables
-let markers = L.featureGroup();
+let markers = [];
+let showing = []; 
+for (var i = 0; i < data.length; i++) {
+    markers.push(null);
+    showing.push(false);
+}
+var legend = L.control({position: 'bottomleft'});
+
 
 // initialize
 $( document ).ready(function() {
+	sideBarItems(data);
 	createMap(lat,lon,zl);
-	readCSV(path);
 });
 
 // create the map
@@ -26,87 +678,170 @@ function createMap(lat,lon,zl){
 	}).addTo(map);
 }
 
-// function to read csv data
-function readCSV(path){
-	Papa.parse(path, {
-		header: true,
-		download: true,
-		complete: function(data) {
-			console.log(data);
-			
-			// map the data
-			mapCSV(data);
-
-		}
-	});
+function sideBarItems(data) {
+    data.forEach(function(item, index) {
+        $(".sidebar").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleSidebarItem(${index});">${item.name}</div>`);
+    });
+    $(".sidebar").append(`<div class="sidebar-title">Artists</div>`);
 }
 
-function panToQuake(index){
-    // zoom to level 17 first
-    map.setZoom(15);
-    // pan to the marker
-    map.panTo(markers.getLayers()[index]._latlng);
+function toggleSidebarItem(index) {
+    var sidebarItem = document.getElementById(data[index].name);
+    sidebarItem.classList.toggle("sidebar-item-active");
 }
 
-function mapCSV(data){
-	//scaling radius
-	let RMax = 15;
-	let RMin = 2;
-
-	var column = [];
-    for(var i=0; i<data.data.length-2; i++){
-        column.push(parseFloat(data.data[i].mag));
+function loadAndMapData(index) {
+    if(!markers[index]) {
+        markers[index] = L.featureGroup();
+        color1 = getRandomColor();
+        color2 = getRandomColor();
+        data[index].color2020 = color1;
+        data[index].color2019 = color2;
+        data[index].artists2020.forEach(function(artist) {
+            songKick(index, `http://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist.name, color1);
+        });
+        data[index].artists2019.forEach(function(artist) {
+            songKick(index, `http://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist.name, color2);
+        });
+        markers[index].addTo(map);
+        showing[index] = true;
+        renderLegend();
+        return;
     }
+    if(showing[index]) {
+        map.removeLayer(markers[index]);
+        showing[index] = false;
+    }
+    else {
+        markers[index].addTo(map);
+        showing[index] = true;
+    }
+    renderLegend();
+}
 
-	let Max = Math.max(...column);
-	let Min = Math.min(...column);
+function renderLegend() {
+    map.removeLayer(legend);
+    legend.onAdd = function () {
+        var div = L.DomUtil.create('div', 'info legend');
+        labels = ['<strong>Legend</strong>']
+        for (var i = 0; i < data.length; i++) {
+            if(showing[i]) {
+                div.innerHTML += 
+                labels.push(
+                    '<i class="circle" style="background:' + data[i].color2019 + '"></i> ' +
+                data[i].name + " 2019");
+                div.innerHTML += 
+                labels.push(
+                    '<i class="circle" style="background:' + data[i].color2020 + '"></i> ' +
+                data[i].name + " 2020");
+            }
+        }
+        div.innerHTML = labels.join('<br>');
+        return div;
+    };
+    legend.addTo(map);
+}
 
-    
-	// loop through each entry
-	
-	data.data.forEach(function(item,index){		
-		// create marker
-		if(index<=1900){
-			//calculate radius
-			let percent = (item.mag - Min) / (Max - Min);
-			let rad = percent * (RMax - RMin) + RMin;
-			// circle options
-			let circleOptions = {
-				radius: rad,
-				weight: 1,
-				color: 'white',
-				fillColor: 'dodgerblue',
-				fillOpacity: .75
+document.getElementById('searchbox').onkeypress = function(e){
+    if (!e) e = window.event;
+    var keyCode = e.code || e.key;
+    if (keyCode == 'Enter'){
+        this.blur();
+        searchArtist();
+        return false;
+    }
+}
+
+function searchArtist(){
+	const textBox = document.getElementById('searchbox');
+	let query = textBox.value;
+    //Check if null or whitespace or empty search query
+    if(!query || query.length === 0 || /^\s*$/.test(query)) {
+        textBox.value = "";
+        return;
+    }
+	songKickArtistSearch(query);
+}
+
+function songKickArtistSearch(artist) {
+    fetch(`https://api.songkick.com/api/3.0/search/artists.json?apikey=Z2JWQTvgk4tsCdDn&query=${artist}`)
+    .then((response) => {
+        return response.json();
+    })
+    .then((myJson) => {
+        let resultsPage = myJson.resultsPage;
+        if(resultsPage.totalEntries) {
+            artistName = myJson.resultsPage.results.artist[0].displayName;
+            artistId = myJson.resultsPage.results.artist[0].id;
+            markers.push(null);
+            showing.push(false);
+            data.push({
+                "name": artistName,
+                "color2019": null,
+                "color2020": null,
+                "artists2019": [
+                    {
+                        "name": artistName,
+                        "skid": artistId,
+                    }
+                ],
+                "artists2020": [
+                    {
+                        "name": artistName,
+                        "skid": artistId,
+                    }
+                ],
+            });
+            $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
+        }
+        else {
+            alert("No Artist Found!");
+        }
+    });
+}
+
+function songKick(index, url, artist, color) {
+	fetch(url)
+	.then((response) => {
+		return response.json();
+	})
+	.then((myJson) => {
+		var count = 0;
+		let resultsPage = myJson.resultsPage;
+		if(resultsPage.totalEntries) {
+			myJson.resultsPage.results.event.forEach(function(event) {
+				let markerOptions = {
+					radius: event.popularity * 25,
+					weight: 1,
+					color: 'white',
+					fillColor: color,
+					fillOpacity: .75
+				}
+				if(event.location != null && event.location.lat != null) {
+					let marker = L.circleMarker([event.location.lat, event.location.lng], markerOptions).on('mouseover',function()
+					{
+						this.bindPopup(`
+                        <div>Artist: ${artist}</div><br>
+                        <div>Event: ${event.displayName}</div><br>
+                        <div>Date & Time: ${event.start.date} ${event.start.time ? event.start.time : ""}</div><br>
+                        <div>Venue: ${event.venue.displayName}</div>`).openPopup();
+					});
+					markers[index].addLayer(marker);
+				}
+				count += 1;
+			});
+			if((myJson.resultsPage.page-1) * 50 + count < myJson.resultsPage.totalEntries) {
+				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color);
 			}
-			
-			let marker = L.circleMarker([item.latitude,item.longitude],circleOptions).on('mouseover',function()
-			{
-				this.bindPopup(`<div>Location: ${item.place}</div><br><div>Time: ${item.time}</div><br><div>Magnitude: ${item.mag}</div>`).openPopup();
-			})
-
-
-			// add marker to featuregroup
-			markers.addLayer(marker)
-
-			// add entry to sidebar
-			$('.sidebar').append(
-				// `<img src="${item.thumbnail_url}" onmouseover="panToImage(${index})">`
-				`<div class = "sidebartitle" onclick="panToQuake(${index})"> ${item.place}<br>${item.time}</div>`
-			)
 		}
 	});
-	
-
-	// add featuregroup to map
-	markers.addTo(map)
-
-	// fit markers to map
-	map.fitBounds(markers.getBounds())
-    function panToQuake(index){
-	// zoom to level 17 first
-	map.setZoom(17);
-	// pan to the marker
-	map.panTo(markers.getLayers()[index]._latlng);
 }
 
-}
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
