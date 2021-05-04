@@ -9,7 +9,7 @@ Kai is a 4th year Design Media Arts major. He has experience designing websites 
 
 Justis: Mapping Specialist<br>
 Justis is a 4th year Theater Design/Production major. She has a double minor in Digital Humanities and Urban and Regional Studies. She has studied web design and mapping through coursework in both of these fields and will be contributing these skills to the project.
-<br><img src = "https://scontent-lax3-1.xx.fbcdn.net/v/t1.6435-9/168148235_1506044636397930_681173568127043633_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=Vmrs2lXIcNcAX9Qz4Z8&_nc_ht=scontent-lax3-1.xx&oh=c04a8639456b7fb4498889925e5e8618&oe=6089F18E" height = "300px">
+<br><img src = "https://scontent-lax3-1.xx.fbcdn.net/v/t1.6435-9/168148235_1506044636397930_681173568127043633_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=0eiFDXSp7hMAX-7-kT4&_nc_ht=scontent-lax3-1.xx&oh=52950a82471d14c66ec8e214b3beb618&oe=60B5730E" height = "300px">
 
 Zhengyang: Developing specialist<br>
 Daniel is a 3rd year Computer Science major. He has worked with many different programming languages and tools and is responsible for data analysis and scripting.
