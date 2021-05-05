@@ -8,94 +8,109 @@ let data = [
     //Classical
     {
         "name": "Classical",
-        "color2019": null,
-        "color2020": null,
         "artists2020": [
             {
                 "name": "The Piano Guys",
                 "skskid": 5872269,
+                "spid": "0jW6R8CVyVohuUJVcuweDI",
             },
             {
                 "name": "Lindsey Stirling",
                 "skskid": 5429218,
+                "spid": "378dH6EszOLFShpRzAQkVM",
             },
             {
                 "name": "Yo-Yo Ma",
                 "skskid": 147314,
+                "spid": "5Dl3HXZjG6ZOWT5cV375lk",
             },
             {
                 "name": "Max Richter",
                 "skskid": 196980,
+                "spid": "2VZNmg4vCnew4Pavo8zDdW",
             },
             {
                 "name": "Yiruma",
                 "skid": 299146,
+                "spid": "0fauHpmSHwodVYIjTqOGHz",
             },
             {
                 "name": "Andrea Bocelli",
                 "skid": 475292,
+                "spid": "3EA9hVIzKfFiQI0Kikz2wo",
             },
             {
                 "name": "San Francisco Symphony",
                 "skid": 408764,
+                "spid": "1qHStDLIc8uV7hvTG6FGRJ",
             },
             {
                 "name": "Lang Lang",
                 "skid": 188643,
+                "spid": "1YZhNFBxkEB5UKTgMDvot4",
             },
             {
                 "name": "London Philharmonic Orchestra",
                 "skid": 242113,
+                "spid": "3PfJE6ebCbCHeuqO4BfNeA",
             },
         ],
         "artists2019": [
             {
                 "name": "Andrea Bocelli",
                 "skid": 475292,
+                "spid": "3EA9hVIzKfFiQI0Kikz2wo",
             },
             {
                 "name": "The Piano Guys",
                 "skid": 5872269,
+                "spid": "0jW6R8CVyVohuUJVcuweDI",
             },
             {
                 "name": "Sarah Brightman",
                 "skid": 399529,
+                "spid": "7Ead768rc4ShGxnqtqccU5",
             },
             {
                 "name": "Lindsey Stirling",
                 "skid": 5429218,
+                "spid": "378dH6EszOLFShpRzAQkVM",
             },
             {
                 "name": "Carpenters",
                 "skid": 86170,
+                "spid": "1eEfMU2AhEo7XnKgL7c304",
             },
             {
                 "name": "Michael Bolton",
                 "skid": 182931,
+                "spid": "0jW6R8CVyVohuUJVcuweDI",
             },
             {
                 "name": "Yo-Yo Ma",
                 "skid": 147314,
+                "spid": "5Dl3HXZjG6ZOWT5cV375lk",
             },
             {
                 "name": "Royal Philharmonic Orchestra",
                 "skid": 170809,
+                "spid": "0jW6R8CVyVohuUJVcuweDI",
             },
             {
                 "name": "2Cellos",
                 "skid": 4392693,
+                "spid": "0jW6R8CVyVohuUJVcuweDI",
             },
             {
                 "name": "The Texas Tenors",
                 "skid": 529822,
+                "spid": "0jW6R8CVyVohuUJVcuweDI",
             },
         ],
     },
     //Country
     {
         "name": "Country",
-        "color2019": null,
-        "color2020": null,
         "artists2020": [
             {
                 "name": "Luke Combs",
@@ -184,8 +199,6 @@ let data = [
     //Electronic
     {
         "name": "Electronic",
-        "color2019": null,
-        "color2020": null,
         "artists2020": [
             {
                 "name": "Lady Gaga",
@@ -274,8 +287,6 @@ let data = [
     //Indie
 	{
         "name": "Indie",
-        "color2019": null,
-        "color2020": null,
         "artists2020": [
             {
                 "name": "Bad Bunny",
@@ -364,8 +375,6 @@ let data = [
     //Pop
 	{
         "name": "Pop",
-        "color2019": null,
-        "color2020": null,
         "artists2020": [
             {
                 "name": "The Weeknd",
@@ -454,8 +463,6 @@ let data = [
     //Rap
     {
         "name": "Rap",
-        "color2019": null,
-        "color2020": null,
         "artists2020": [
             {
                 "name": "Roddy Ricch",
@@ -544,8 +551,6 @@ let data = [
     //Rock
     {
         "name": "Rock",
-        "color2019": null,
-        "color2020": null,
         "artists2020": [
             {
                 "name": "Panic! At The Disco",
@@ -678,10 +683,11 @@ function loadAndMapData(index) {
         data[index].color2020 = color1;
         data[index].color2019 = color2;
         data[index].artists2020.forEach(function(artist) {
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist.name, color1);
+            console.log(artist)
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1);
         });
         data[index].artists2019.forEach(function(artist) {
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist.name, color2);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist, color2);
         });
         markers[index].addTo(map);
         showing[index] = true;
@@ -703,17 +709,17 @@ function renderLegend() {
     map.removeLayer(legend);
     legend.onAdd = function () {
         var div = L.DomUtil.create('div', 'info legend');
-        labels = ['<strong>Legend</strong>']
+        labels = ['<strong style="font-family:Montserrat">Legend</strong>']
         for (var i = 0; i < data.length; i++) {
             if(showing[i]) {
                 div.innerHTML += 
                 labels.push(
                     '<i class="circle" style="background:' + data[i].color2019 + '"></i> ' +
-                data[i].name + " 2019");
+                    '<span style="font-family:Montserrat">' + data[i].name + " 2019</span>");
                 div.innerHTML += 
                 labels.push(
                     '<i class="circle" style="background:' + data[i].color2020 + '"></i> ' +
-                data[i].name + " 2020");
+                    '<span style="font-family:Montserrat">' + data[i].name + " 2020</span>");
             }
         }
         div.innerHTML = labels.join('<br>');
@@ -801,10 +807,14 @@ function songKick(index, url, artist, color) {
 					let marker = L.circleMarker([event.location.lat, event.location.lng], markerOptions).on('mouseover',function()
 					{
 						this.bindPopup(`
-                        <div>Artist: ${artist}</div><br>
-                        <div>Event: ${event.displayName}</div><br>
-                        <div>Date & Time: ${event.start.date} ${event.start.time ? event.start.time : ""}</div><br>
-                        <div>Venue: ${event.venue.displayName}</div>`).openPopup();
+                        <div class="popup-title">${event.displayName}</div><br>
+                        <div>Artist: <a href="https://open.spotify.com/artist/${artist.spid}" target="_blank">${artist.name}</a></div><br>
+                        <div>${event.start.time ? `Date & Time: ${event.start.date} at ${event.start.time}` : `Date: ${event.start.date}`}</div><br>
+                        <div>Venue: ${event.venue.displayName}</div><br>
+                        <div>Popularity:</div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-container" style="width:${(200-57)*event.popularity}px;background-color:${color}"></div>
+                        </div>`, {minWidth: 300}).openPopup();
 					});
 					markers[index].addLayer(marker);
 				}
