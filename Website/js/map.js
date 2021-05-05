@@ -188,32 +188,62 @@ function songKickArtistSearch(artist) {
     })
     .then((myJson) => {
         let resultsPage = myJson.resultsPage;
-        if(resultsPage.totalEntries) {
+
+        if(!resultsPage.totalEntries) {
+            alert("No Artist Found!");
+        }
+        else {
             artistName = myJson.resultsPage.results.artist[0].displayName;
             artistId = myJson.resultsPage.results.artist[0].id;
             markers.push(null);
             showing.push(false);
-            data.push({
-                "name": artistName,
-                "color2019": null,
-                "color2020": null,
-                "artists2019": [
-                    {
+            fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1`, {
+                headers: {
+                    "Authorization": "Bearer BQAWJYjnPclBBahN-HqOuAw4dCkXV1sOiWB94OAeDe6ifid3spNJHWMs0RqimLFA_ytiMlYHbibuXRezgrI1hUBSrHhyF68bZ280V6WeuWdynr8N6gfm5waBemhJv3INuVejFN489PWLzoZYCGJv-b0c3xCN-pvchlM",
+                },
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((spotifyJson) => {
+                if(!spotifyJson.artists) {
+                    data.push({
                         "name": artistName,
-                        "skid": artistId,
-                    }
-                ],
-                "artists2020": [
-                    {
-                        "name": artistName,
-                        "skid": artistId,
-                    }
-                ],
+                        "artists2019": [
+                            {
+                                "name": artistName,
+                                "skid": artistId,
+                            }
+                        ],
+                        "artists2020": [
+                            {
+                                "name": artistName,
+                                "skid": artistId,
+                            }
+                        ],
+                    });
+                    $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
+                    return;
+                }
+                data.push({
+                    "name": artistName,
+                    "artists2019": [
+                        {
+                            "name": artistName,
+                            "skid": artistId,
+                            "spid": spotifyJson.artists.items[0].id,
+                        }
+                    ],
+                    "artists2020": [
+                        {
+                            "name": artistName,
+                            "skid": artistId,
+                            "spid": spotifyJson.artists.items[0].id,
+                        }
+                    ],
+                });
+                $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
             });
-            $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
-        }
-        else {
-            alert("No Artist Found!");
         }
     });
 }
@@ -240,7 +270,7 @@ function songKick(index, url, artist, color) {
 					{
 						this.bindPopup(`
                         <span class="circle" style="background:${color}"></span><span class="popup-title">   ${event.displayName}</span><br>
-                        <span>Artist: <a href="https://open.spotify.com/artist/${artist.spid}" target="_blank">${artist.name}</a></span><br>
+                        <span>Artist: ${artist.spid ? `<a href="https://open.spotify.com/artist/${artist.spid}" target="_blank">${artist.name}</a>` : artist.name}</span><br>
                         <span>${event.start.time ? `Date & Time: ${event.start.date} at ${event.start.time}` : `Date: ${event.start.date}`}</span><br>
                         <span>Venue: ${event.venue.displayName}, ${event.location.city}</span><br>
                         <div>Popularity:</div>
