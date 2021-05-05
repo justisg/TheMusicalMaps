@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TheMusicalMaps</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+	<!-- style sheets -->
+	<link rel="stylesheet" href="css/mainstyle.css">
+
+	<!-- leaflet -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="js/papaparse.min.js"></script>
+
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<header>
+        <h1><a href="index.html">The Musical Maps</a></h1>
+        <div class = "search-container">
+            <input type="text" id = "searchbox" placeholder="Search for an artist">
+            <button onclick="searchArtist();"><i class="fa fa-search"></i></button>
+        </div>
+        <nav>
+            <ul class = "nav_links" >
+                <li><a href=""><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a><br></li>
+                <li><a href="data.html">Data</a></li>
+            </ul>
+        </nav>
+    </header>
+		<div class="sidebar">
+			<div class="sidebar-title">Genres</div>
+		</div>
+		<div class="content">
+			<div id="map"></div>
+		</div>
+		<!-- <div class="footer">
+			Source: <a href="https://www.researchgate.net/post/What-is-the-greatest-online-data-set-for-earthquakes">Earthquake Forum @ researchgate</a>
+		</div> -->
+
+		<script src="js/map.js"></script>
+		<script src="js/searchbar.js"></script>
+
+</body>
+</html>
