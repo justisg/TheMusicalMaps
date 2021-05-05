@@ -193,29 +193,53 @@ function songKickArtistSearch(artist) {
             artistId = myJson.resultsPage.results.artist[0].id;
             markers.push(null);
             showing.push(false);
-            fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1`, {
+            var details = {
+                "grant_type": "client_credentials",
+            };
+            var formBody = [];
+            for (var property in details) {
+              var encodedKey = encodeURIComponent(property);
+              var encodedValue = encodeURIComponent(details[property]);
+              formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+            fetch(`https://accounts.spotify.com/api/token`, {
+                method: 'post',
                 headers: {
-                    "Authorization": "Bearer BQAWJYjnPclBBahN-HqOuAw4dCkXV1sOiWB94OAeDe6ifid3spNJHWMs0RqimLFA_ytiMlYHbibuXRezgrI1hUBSrHhyF68bZ280V6WeuWdynr8N6gfm5waBemhJv3INuVejFN489PWLzoZYCGJv-b0c3xCN-pvchlM",
+                    "Authorization": "Basic YmQ0YjY3YzhlZDY5NGIzMmI2MzMwYjU2NGUzMTk2YmE6MzU1MzA2YzI0ZDVkNDgxNjhiMDYxODBiMTRkM2Q3N2Q",
+                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
                 },
+                body: formBody,
             })
             .then((response) => {
                 return response.json();
             })
-            .then((spotifyJson) => {
-                if(!spotifyJson.artists || !spotifyJson.artists.total) {
+            .then((authResponse) => {
+                console.log(authResponse);
+                fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1`, {
+                    headers: {
+                        "Authorization": `Bearer ${authResponse.access_token}`,
+                    },
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((spotifyJson) => {
+                    if(!spotifyJson.artists || !spotifyJson.artists.total) {
+                        data.push({
+                            "name": artistName,
+                            "skid": artistId,
+                        });
+                        $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
+                        return;
+                    }
                     data.push({
                         "name": artistName,
                         "skid": artistId,
+                        "spid": spotifyJson.artists.items[0].id,
                     });
                     $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
-                    return;
-                }
-                data.push({
-                    "name": artistName,
-                    "skid": artistId,
-                    "spid": spotifyJson.artists.items[0].id,
                 });
-                $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
             });
         }
     });
