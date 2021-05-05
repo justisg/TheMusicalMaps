@@ -93,7 +93,7 @@ function loadAndMapData(index) {
         color2 = getRandomColor();
         data[index].color2020 = color1;
         data[index].color2019 = color2;
-        if(!data[index].artists2019) {
+        if(!data[index].skid) {
             Papa.parse(data[index].data2020, {
                 header: true,
                 download: true,
@@ -114,12 +114,8 @@ function loadAndMapData(index) {
             });
         }
         else {
-            data[index].artists2020.forEach(function(artist) {
-                songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1);
-            })
-            data[index].artists2019.forEach(function(artist) {
-                songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist, color2);
-            })
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, data[index], color1);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, data[index], color2);
         }
         markers[index].addTo(map);
         showing[index] = true;
@@ -206,41 +202,18 @@ function songKickArtistSearch(artist) {
                 return response.json();
             })
             .then((spotifyJson) => {
-                if(!spotifyJson.artists) {
+                if(!spotifyJson.artists || !spotifyJson.artists.total) {
                     data.push({
                         "name": artistName,
-                        "artists2019": [
-                            {
-                                "name": artistName,
-                                "skid": artistId,
-                            }
-                        ],
-                        "artists2020": [
-                            {
-                                "name": artistName,
-                                "skid": artistId,
-                            }
-                        ],
+                        "skid": artistId,
                     });
                     $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
                     return;
                 }
                 data.push({
                     "name": artistName,
-                    "artists2019": [
-                        {
-                            "name": artistName,
-                            "skid": artistId,
-                            "spid": spotifyJson.artists.items[0].id,
-                        }
-                    ],
-                    "artists2020": [
-                        {
-                            "name": artistName,
-                            "skid": artistId,
-                            "spid": spotifyJson.artists.items[0].id,
-                        }
-                    ],
+                    "skid": artistId,
+                    "spid": spotifyJson.artists.items[0].id,
                 });
                 $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
             });
