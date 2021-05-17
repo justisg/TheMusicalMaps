@@ -23,6 +23,9 @@
 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- classy brew -->
+	<script src="js/classybrew.js"></script>
 </head>
 <body>
 
@@ -41,7 +44,9 @@
         </nav>
     </header>
 		<div class="sidebar">
-			<div class="sidebar-item">Choropleth</div>
+			<div class="sidebar-title">Choropleth (US)</div>
+			<div class="sidebar-item" id="choropleth2019" onclick="toggleChoroplethSidebarItem(0);">2019</div>
+			<div class="sidebar-item" id="choropleth2020" onclick="toggleChoroplethSidebarItem(1);">2020</div>
 			<div class="sidebar-title">Genres</div>
 		</div>
 		<div class="content">

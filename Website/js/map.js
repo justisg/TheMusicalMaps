@@ -49,15 +49,32 @@ let data = [
     },
 ]
 
-// global variables
+//marker global variables
 let markers = [];
-let showing = []; 
+let showing = [];
+let stateShows2019 = [];
+let stateShows2020 = [];
 for (var i = 0; i < data.length; i++) {
     markers.push(null);
     showing.push(false);
+    stateShows2019.push([]);
+    stateShows2020.push([]);
+    for(var j = 0; j < 52; j++) {
+        stateShows2019[i].push(0);
+        stateShows2020[i].push(0);
+    }
 }
 var legend = L.control({position: 'bottomleft'});
 
+//choropleth global variables
+let choropleth = [false, false];
+let values = [];
+let valuesIndexed = [];
+let geojsonPath = 'data/us-states.json';
+let geojson_data;
+let geojson_layer;
+let brew = new classyBrew();
+let info_panel = L.control();
 
 // initialize
 $( document ).ready(function() {
@@ -76,12 +93,164 @@ function createMap(lat,lon,zl){
 
 function sideBarItems(data) {
     data.forEach(function(item, index) {
-        $(".sidebar").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleSidebarItem(${index});">${item.name}</div>`);
+        $(".sidebar").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleGenreSidebarItem(${index});toggleChoroplethSidebarItem(2);">${item.name}</div>`);
     });
     $(".sidebar").append(`<div class="sidebar-title">Artists</div>`);
 }
 
-function toggleSidebarItem(index) {
+function toggleChoroplethSidebarItem(index) {
+    var choropleth2019 = document.getElementById("choropleth2019");
+    var choropleth2020 = document.getElementById("choropleth2020");
+    if(index == 0) {
+        choropleth2019.classList.toggle("sidebar-item-active");
+        choropleth[0] = !choropleth[0];
+        if(choropleth[1]) {
+            choropleth2020.classList.toggle("sidebar-item-active");
+            choropleth[1] = false;
+        }
+    }
+    else if(index == 1) {
+        choropleth2020.classList.toggle("sidebar-item-active");
+        choropleth[1] = !choropleth[1];
+        if(choropleth[0]) {
+            choropleth2019.classList.toggle("sidebar-item-active");
+            choropleth[0] = false;
+        }
+    }
+    if(!choropleth[0] && !choropleth[1]) {
+        info_panel.remove();
+        geojson_layer.removeLayer(info_panel);
+        if (geojson_layer){
+            geojson_layer.clearLayers()
+        }
+    }
+    else {
+        $.getJSON(geojsonPath, function(data) {
+            geojson_data = data;
+            if(choropleth[0]) {
+                mapGeoJSON(2019);
+            }
+            else {
+                mapGeoJSON(2020);
+            }
+        })
+    }
+}
+
+function mapGeoJSON(year) {
+    if (geojson_layer){
+		geojson_layer.clearLayers()
+	}
+    fieldtomap = "density";
+	// create an empty array
+	values = [
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 0, 0];
+
+	// based on the provided field, enter each value into the array
+	geojson_data.features.forEach(function(item, index){
+        showCount = 0;
+        for(var i = 0; i < showing.length; i++) {
+            if(showing[i]) {
+                showCount += (year == 2019 ? stateShows2019[i][index] : stateShows2020[i][index]);
+            }
+        }
+		values[index] = showCount;
+	})
+    valuesIndexed = [];
+    for(var i = 0; i < values.length; i++) {
+        valuesIndexed.push(values[i]);
+    }
+	// set up the "brew" options
+	brew.setSeries(values);
+	brew.setNumClasses(5);
+	brew.setColorCode('YlOrRd');
+	brew.classify('quantiles');
+
+	// create the layer and add to map
+	geojson_layer = L.geoJson(geojson_data,{
+		style: getStyle,
+		onEachFeature: onEachFeature // actions on each feature
+	}).addTo(map);
+
+	map.fitBounds(geojson_layer.getBounds())
+    createInfoPanel();
+}
+
+function getStyle(feature){
+	return {
+		stroke: true,
+		color: 'white',
+		weight: 1,
+		fill: true,
+		fillColor: brew.getColorInRange(valuesIndexed[feature.id]),
+		fillOpacity: 0.8
+	}
+}
+
+function onEachFeature(feature, layer) {
+	layer.on({
+		mouseover: highlightFeature,
+		mouseout: resetHighlight,
+	});
+}
+
+// on mouse over, highlight the feature
+function highlightFeature(e) {
+	var layer = e.target;
+
+	// style to use on mouse over
+	layer.setStyle({
+		weight: 2,
+		color: '#666',
+		fillOpacity: 0.7
+	});
+
+	if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		layer.bringToFront();
+	}
+    info_panel.update(layer.feature);
+}
+
+// on mouse out, reset the style, otherwise, it will remain highlighted
+function resetHighlight(e) {
+	geojson_layer.resetStyle(e.target);
+    info_panel.update() // resets infopanel
+}
+
+function createInfoPanel(){
+
+	info_panel.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+		this.update();
+		return this._div;
+	};
+
+	// method that we will use to update the control based on feature properties passed
+	info_panel.update = function (feature) {
+		// if feature is highlighted
+		if(feature){
+			this._div.innerHTML = `<b>${feature.properties.name}</b><br>Shows: ${valuesIndexed[feature.id]}`;
+		}
+		// if feature is not highlighted
+		else
+		{
+			this._div.innerHTML = 'Hover over a state';
+		}
+	};
+
+	info_panel.addTo(map);
+}
+
+function toggleGenreSidebarItem(index) {
     var sidebarItem = document.getElementById(data[index].name);
     sidebarItem.classList.toggle("sidebar-item-active");
 }
@@ -99,7 +268,7 @@ function loadAndMapData(index) {
                 download: true,
                 complete: function(res) {
                     res.data.forEach(function(artist) {
-                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1);
+                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1, 2020);
                     });
                 }
             });
@@ -108,14 +277,14 @@ function loadAndMapData(index) {
                 download: true,
                 complete: function(res) {
                     res.data.forEach(function(artist) {
-                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist, color2);
+                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist, color2, 2019);
                     });
                 }
             });
         }
         else {
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, data[index], color1);
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, data[index], color2);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, data[index], color1, 2020);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, data[index], color2, 2019);
         }
         markers[index].addTo(map);
         showing[index] = true;
@@ -193,6 +362,28 @@ function songKickArtistSearch(artist) {
             artistId = myJson.resultsPage.results.artist[0].id;
             markers.push(null);
             showing.push(false);
+            stateShows2019.push([
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 0, 0]);
+            stateShows2020.push([
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 0, 0]);
             var details = {
                 "grant_type": "client_credentials",
             };
@@ -230,7 +421,7 @@ function songKickArtistSearch(artist) {
                             "name": artistName,
                             "skid": artistId,
                         });
-                        $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
+                        $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
                         return;
                     }
                     data.push({
@@ -238,14 +429,14 @@ function songKickArtistSearch(artist) {
                         "skid": artistId,
                         "spid": spotifyJson.artists.items[0].id,
                     });
-                    $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
+                    $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
                 });
             });
         }
     });
 }
 
-function songKick(index, url, artist, color) {
+function songKick(index, url, artist, color, year) {
 	fetch(url)
 	.then((response) => {
 		return response.json();
@@ -277,13 +468,342 @@ function songKick(index, url, artist, color) {
 					});
 					markers[index].addLayer(marker);
 				}
+                //If show in US
+                if(event.venue && event.venue.metroArea && event.venue.metroArea.country.displayName == "US") {
+                    incrementStateShows(index, year, event.venue.metroArea.state.displayName);
+                }
 				count += 1;
 			});
 			if((myJson.resultsPage.page-1) * 50 + count < myJson.resultsPage.totalEntries) {
-				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color);
+				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color, year);
 			}
+            toggleChoroplethSidebarItem(2);
 		}
 	});
+}
+
+function incrementStateShows(index, year, state) {
+    if(year == 2020) {
+        switch(state) {
+            case "AL":
+                stateShows2020[index][0] += 1;
+                break;
+            case "AK":
+                stateShows2020[index][1] += 1;
+                break;
+            case "AZ":
+                stateShows2020[index][2] += 1;
+                break;
+            case "AR":
+                stateShows2020[index][3] += 1;
+                break;
+            case "CA":
+                console.log("California");
+                stateShows2020[index][4] += 1;
+                break;
+            case "CO":
+                stateShows2020[index][5] += 1;
+                break;
+            case "CT":
+                stateShows2020[index][6] += 1;
+                break;
+            case "DE":
+                stateShows2020[index][7] += 1;
+                break;
+            case "DC":
+                stateShows2020[index][8] += 1;
+                break;
+            case "FL":
+                stateShows2020[index][9] += 1;
+                break;
+            case "GA":
+                stateShows2020[index][10] += 1;
+                break;
+            case "HI":
+                stateShows2020[index][11] += 1;
+                break;
+            case "ID":
+                stateShows2020[index][12] += 1;
+                break;
+            case "IL":
+                stateShows2020[index][13] += 1;
+                break;
+            case "IN":
+                stateShows2020[index][14] += 1;
+                break;
+            case "IA":
+                stateShows2020[index][15] += 1;
+                break;
+            case "KS":
+                stateShows2020[index][16] += 1;
+                break;
+            case "KY":
+                stateShows2020[index][17] += 1;
+                break;
+            case "LA":
+                stateShows2020[index][18] += 1;
+                break;
+            case "ME":
+                stateShows2020[index][19] += 1;
+                break;
+            case "MD":
+                stateShows2020[index][20] += 1;
+                break;
+            case "MA":
+                stateShows2020[index][21] += 1;
+                break;
+            case "MI":
+                stateShows2020[index][22] += 1;
+                break;
+            case "MN":
+                stateShows2020[index][23] += 1;
+                break;
+            case "MS":
+                stateShows2020[index][24] += 1;
+                break;
+            case "MO":
+                stateShows2020[index][25] += 1;
+                break;
+            case "MT":
+                stateShows2020[index][26] += 1;
+                break;
+            case "NE":
+                stateShows2020[index][27] += 1;
+                break;
+            case "NV":
+                stateShows2020[index][28] += 1;
+                break;
+            case "NH":
+                stateShows2020[index][29] += 1;
+                break;
+            case "NJ":
+                stateShows2020[index][30] += 1;
+                break;
+            case "NM":
+                stateShows2020[index][31] += 1;
+                break;
+            case "NY":
+                stateShows2020[index][32] += 1;
+                break;
+            case "NC":
+                stateShows2020[index][33] += 1;
+                break;
+            case "ND":
+                stateShows2020[index][34] += 1;
+                break;
+            case "OH":
+                stateShows2020[index][35] += 1;
+                break;
+            case "OK":
+                stateShows2020[index][36] += 1;
+                break;
+            case "OR":
+                stateShows2020[index][37] += 1;
+                break;
+            case "PA":
+                stateShows2020[index][38] += 1;
+                break;
+            case "RI":
+                stateShows2020[index][39] += 1;
+                break;
+            case "SC":
+                stateShows2020[index][40] += 1;
+                break;
+            case "SD":
+                stateShows2020[index][41] += 1;
+                break;
+            case "TN":
+                stateShows2020[index][42] += 1;
+                break;
+            case "TX":
+                stateShows2020[index][43] += 1;
+                break;
+            case "UT":
+                stateShows2020[index][44] += 1;
+                break;
+            case "VT":
+                stateShows2020[index][45] += 1;
+                break;
+            case "VA":
+                stateShows2020[index][46] += 1;
+                break;
+            case "WA":
+                stateShows2020[index][47] += 1;
+                break;
+            case "WV":
+                stateShows2020[index][48] += 1;
+                break;
+            case "WI":
+                stateShows2020[index][49] += 1;
+                break;
+            case "WY":
+                stateShows2020[index][50] += 1;
+                break;
+            case "PR":
+                stateShows2020[index][51] += 1;
+                break;
+        }
+    }
+    else {
+        switch(state) {
+            case "AL":
+                stateShows2019[index][0] += 1;
+                break;
+            case "AK":
+                stateShows2019[index][1] += 1;
+                break;
+            case "AZ":
+                stateShows2019[index][2] += 1;
+                break;
+            case "AR":
+                stateShows2019[index][3] += 1;
+                break;
+            case "CA":
+                stateShows2019[index][4] += 1;
+                break;
+            case "CO":
+                stateShows2019[index][5] += 1;
+                break;
+            case "CT":
+                stateShows2019[index][6] += 1;
+                break;
+            case "DE":
+                stateShows2019[index][7] += 1;
+                break;
+            case "DC":
+                stateShows2019[index][8] += 1;
+                break;
+            case "FL":
+                stateShows2019[index][9] += 1;
+                break;
+            case "GA":
+                stateShows2019[index][10] += 1;
+                break;
+            case "HI":
+                stateShows2019[index][11] += 1;
+                break;
+            case "ID":
+                stateShows2019[index][12] += 1;
+                break;
+            case "IL":
+                stateShows2019[index][13] += 1;
+                break;
+            case "IN":
+                stateShows2019[index][14] += 1;
+                break;
+            case "IA":
+                stateShows2019[index][15] += 1;
+                break;
+            case "KS":
+                stateShows2019[index][16] += 1;
+                break;
+            case "KY":
+                stateShows2019[index][17] += 1;
+                break;
+            case "LA":
+                stateShows2019[index][18] += 1;
+                break;
+            case "ME":
+                stateShows2019[index][19] += 1;
+                break;
+            case "MD":
+                stateShows2019[index][20] += 1;
+                break;
+            case "MA":
+                stateShows2019[index][21] += 1;
+                break;
+            case "MI":
+                stateShows2019[index][22] += 1;
+                break;
+            case "MN":
+                stateShows2019[index][23] += 1;
+                break;
+            case "MS":
+                stateShows2019[index][24] += 1;
+                break;
+            case "MO":
+                stateShows2019[index][25] += 1;
+                break;
+            case "MT":
+                stateShows2019[index][26] += 1;
+                break;
+            case "NE":
+                stateShows2019[index][27] += 1;
+                break;
+            case "NV":
+                stateShows2019[index][28] += 1;
+                break;
+            case "NH":
+                stateShows2019[index][29] += 1;
+                break;
+            case "NJ":
+                stateShows2019[index][30] += 1;
+                break;
+            case "NM":
+                stateShows2019[index][31] += 1;
+                break;
+            case "NY":
+                stateShows2019[index][32] += 1;
+                break;
+            case "NC":
+                stateShows2019[index][33] += 1;
+                break;
+            case "ND":
+                stateShows2019[index][34] += 1;
+                break;
+            case "OH":
+                stateShows2019[index][35] += 1;
+                break;
+            case "OK":
+                stateShows2019[index][36] += 1;
+                break;
+            case "OR":
+                stateShows2019[index][37] += 1;
+                break;
+            case "PA":
+                stateShows2019[index][38] += 1;
+                break;
+            case "RI":
+                stateShows2019[index][39] += 1;
+                break;
+            case "SC":
+                stateShows2019[index][40] += 1;
+                break;
+            case "SD":
+                stateShows2019[index][41] += 1;
+                break;
+            case "TN":
+                stateShows2019[index][42] += 1;
+                break;
+            case "TX":
+                stateShows2019[index][43] += 1;
+                break;
+            case "UT":
+                stateShows2019[index][44] += 1;
+                break;
+            case "VT":
+                stateShows2019[index][45] += 1;
+                break;
+            case "VA":
+                stateShows2019[index][46] += 1;
+                break;
+            case "WA":
+                stateShows2019[index][47] += 1;
+                break;
+            case "WV":
+                stateShows2019[index][48] += 1;
+                break;
+            case "WI":
+                stateShows2019[index][49] += 1;
+                break;
+            case "WY":
+                stateShows2019[index][50] += 1;
+                break;
+            case "PR":
+                stateShows2019[index][51] += 1;
+                break;
+        }
+    }
 }
 
 function getRandomColor() {
