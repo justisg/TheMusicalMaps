@@ -660,9 +660,9 @@ function createMap(lat,lon,zl){
 
 function sideBarItems(data) {
     data.forEach(function(item, index) {
-        $(".sidebar").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleSidebarItem(${index});">${item.name}</div>`);
+        $(".sidebar-tags").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleSidebarItem(${index});">${item.name}</div>`);
     });
-    $(".sidebar").append(`<div class="sidebar-title">Artists</div>`);
+    $(".sidebar-tags").append(`<div class="sidebar-title">Artists</div>`);
 }
 
 function toggleSidebarItem(index) {
