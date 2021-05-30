@@ -8,640 +8,73 @@ let data = [
     //Classical
     {
         "name": "Classical",
-        "color2019": null,
-        "color2020": null,
-        "artists2020": [
-            {
-                "name": "The Piano Guys",
-                "skskid": 5872269,
-            },
-            {
-                "name": "Lindsey Stirling",
-                "skskid": 5429218,
-            },
-            {
-                "name": "Yo-Yo Ma",
-                "skskid": 147314,
-            },
-            {
-                "name": "Max Richter",
-                "skskid": 196980,
-            },
-            {
-                "name": "Yiruma",
-                "skid": 299146,
-            },
-            {
-                "name": "Andrea Bocelli",
-                "skid": 475292,
-            },
-            {
-                "name": "San Francisco Symphony",
-                "skid": 408764,
-            },
-            {
-                "name": "Lang Lang",
-                "skid": 188643,
-            },
-            {
-                "name": "London Philharmonic Orchestra",
-                "skid": 242113,
-            },
-        ],
-        "artists2019": [
-            {
-                "name": "Andrea Bocelli",
-                "skid": 475292,
-            },
-            {
-                "name": "The Piano Guys",
-                "skid": 5872269,
-            },
-            {
-                "name": "Sarah Brightman",
-                "skid": 399529,
-            },
-            {
-                "name": "Lindsey Stirling",
-                "skid": 5429218,
-            },
-            {
-                "name": "Carpenters",
-                "skid": 86170,
-            },
-            {
-                "name": "Michael Bolton",
-                "skid": 182931,
-            },
-            {
-                "name": "Yo-Yo Ma",
-                "skid": 147314,
-            },
-            {
-                "name": "Royal Philharmonic Orchestra",
-                "skid": 170809,
-            },
-            {
-                "name": "2Cellos",
-                "skid": 4392693,
-            },
-            {
-                "name": "The Texas Tenors",
-                "skid": 529822,
-            },
-        ],
+        "data2019": "data/classical2019.csv",
+        "data2020": "data/classical2020.csv",
     },
     //Country
     {
         "name": "Country",
-        "color2019": null,
-        "color2020": null,
-        "artists2020": [
-            {
-                "name": "Luke Combs",
-                "skid": 8782319,
-            },
-            {
-                "name": "Morgan Wallen",
-                "skid": 8964794,
-            },
-            {
-                "name": "Kane Brown",
-                "skid": 3587911,
-            },
-            {
-                "name": "Maren Morris",
-                "skskid": 2055882,
-            },
-            {
-                "name": "Jason Aldean",
-                "skid": 486575,
-            },
-            {
-                "name": "Sam Hunt",
-                "skid": 4150076,
-            },
-            {
-                "name": "Gabby Barrett",
-                "skid": 7377954,
-            },
-            {
-                "name": "Blake Shelton",
-                "skid": 565207,
-            },
-            {
-                "name": "Thomas Rhett",
-                "skid": 4254071,
-            },
-            {
-                "name": "Dan + Shay",
-                "skid": 7775839,
-            },
-        ],
-        "artists2019": [
-            {
-                "name": "Luke Combs",
-                "skid": 8782319,
-            },
-            {
-                "name": "Dan + Shay",
-                "skid": 7775839,
-            },
-            {
-                "name": "Kane Brown",
-                "skid": 3587911,
-            },
-            {
-                "name": "Thomas Rhett",
-                "skid": 4254071,
-            },
-            {
-                "name": "Florida Georgia Line",
-                "skid": 4160206,
-            },
-            {
-                "name": "Chris Stapleton",
-                "skid": 793839,
-            },
-            {
-                "name": "Morgan Wallen",
-                "skid": 8964794,
-            },
-            {
-                "name": "Maren Morris",
-                "skid": 2055882,
-            },
-            {
-                "name": "Jason Aldean",
-                "skid": 486575,
-            },
-            {
-                "name": "Blake Shelton",
-                "skid": 565207,
-            },
-        ],
+        "data2019": "data/country2019.csv",
+        "data2020": "data/country2020.csv",
     },
     //Electronic
     {
         "name": "Electronic",
-        "color2019": null,
-        "color2020": null,
-        "artists2020": [
-            {
-                "name": "Lady Gaga",
-                "skid": 974908,
-            },
-            {
-                "name": "The Chainsmokers",
-                "skid": 2867816,
-            },
-            {
-                "name": "Kygo",
-                "skskid": 7738429,
-            },
-            {
-                "name": "Marshmello",
-                "skid": 8613384,
-            },
-            {
-                "name": "Illenium",
-                "skid": 7668859,
-            },
-            {
-                "name": "Calvin Harris",
-                "skid": 82547,
-            },
-            {
-                "name": "Regard",
-                "skid": 353321,
-            },
-            {
-                "name": "Surf Mesa",
-                "skid": 10150988,
-            },
-            {
-                "name": "Gryffin",
-                "skid": 8501183,
-            },
-            {
-                "name": "ODESZA",
-                "skid": 6018139,
-            },
-        ],
-        "artists2019": [
-            {
-                "name": "The Chainsmokers",
-                "skid": 2867816,
-            },
-            {
-                "name": "Marshmello",
-                "skid": 8613384,
-            },
-            {
-                "name": "DJ Snake",
-                "skid": 297319,
-            },
-            {
-                "name": "Lady Gaga",
-                "skid": 974908,
-            },
-            {
-                "name": "Avicii",
-                "skid": 3117626,
-            },
-            {
-                "name": "ODESZA",
-                "skid": 6018139,
-            },
-            {
-                "name": "Illenium",
-                "skid": 7668859,
-            },
-            {
-                "name": "Calvin Harris",
-                "skid": 82547,
-            },
-            {
-                "name": "Alan Walker",
-                "skid": 8754489,
-            },
-            {
-                "name": "Clean Bandit",
-                "skid": 3376301,
-            },
-        ],
+        "data2019": "data/electronic2019.csv",
+        "data2020": "data/electronic2020.csv",
     },
     //Indie
 	{
         "name": "Indie",
-        "color2019": null,
-        "color2020": null,
-        "artists2020": [
-            {
-                "name": "Bad Bunny",
-                "skskid": 9059639,
-            },
-            {
-                "name": "BTS",
-                "skskid": 135912,
-            },
-            {
-                "name": "Trippie Redd",
-                "skskid": 9212594,
-            },
-            {
-                "name": "XXXTENTACION",
-                "skskid": 8997064,
-            },
-            {
-                "name": "Morgan Wallen",
-                "skid": 8964794,
-            },
-            {
-                "name": "Jason Aldean",
-                "skid": 486575,
-            },
-            {
-                "name": "NF",
-                "skid": 249773,
-            },
-            {
-                "name": "Five Finger Death Punch",
-                "skid": 577269,
-            },
-            {
-                "name": "Joji",
-                "skid": 9214309,
-            },
-            {
-                "name": "Lauren Daigle",
-                "skid": 7949878,
-            },
-        ],
-        "artists2019": [
-            {
-                "name": "BTS",
-                "skid": 135912,
-            },
-            {
-                "name": "Lauren Daigle",
-                "skid": 7949878,
-            },
-            {
-                "name": "XXXTENTACION",
-                "skid": 8997064,
-            },
-            {
-                "name": "NF",
-                "skid": 249773,
-            },
-            {
-                "name": "Zac Brown Band",
-                "skid": 514278,
-            },
-            {
-                "name": "The Lumineers",
-                "skid": 2827981,
-            },
-            {
-                "name": "Anderson .Paak",
-                "skid": 7286084,
-            },
-            {
-                "name": "Five Finger Death Punch",
-                "skid": 577269,
-            },
-            {
-                "name": "Eric Clapton",
-                "skid": 387667,
-            },
-            {
-                "name": "Sammy Hagar",
-                "skid": 186864,
-            },
-        ],
+        "data2019": "data/indie2019.csv",
+        "data2020": "data/indie2020.csv",
     },
     //Pop
 	{
         "name": "Pop",
-        "color2019": null,
-        "color2020": null,
-        "artists2020": [
-            {
-                "name": "The Weeknd",
-                "skskid": 4363463,
-            },
-            {
-                "name": "Dua Lipa",
-                "skskid": 8310783,
-            },
-            {
-                "name": "Harry Styles",
-                "skskid": 5820634,
-            },
-            {
-                "name": "Lewis Capaldi",
-                "skskid": 7156949,
-            },
-            {
-                "name": "Post Malone",
-                "skid": 8508053,
-            },
-            {
-                "name": "Doja Cat",
-                "skid": 8030683,
-            },
-            {
-                "name": "Justin Bieber",
-                "skid": 2596951,
-            },
-            {
-                "name": "Lizzy",
-                "skid": 531361,
-            },
-            {
-                "name": "Maroon 5",
-                "skid": 181875,
-            },
-            {
-                "name": "Selena Gomez",
-                "skid": 1059348,
-            },
-        ],
-        "artists2019": [
-            {
-                "name": "Ariana Grande",
-                "skid": 4971683,
-            },
-            {
-                "name": "Post Malone",
-                "skid": 8508053,
-            },
-            {
-                "name": "Khalid",
-                "skid": 894756,
-            },
-            {
-                "name": "Jonas Brothers",
-                "skid": 110449,
-            },
-            {
-                "name": "Halsey",
-                "skid": 8067338,
-            },
-            {
-                "name": "Panic! At The Disco",
-                "skid": 139037,
-            },
-            {
-                "name": "Shawn Mendes",
-                "skid": 38125949,
-            },
-            {
-                "name": "Billie Eilish",
-                "skid": 8913479,
-            },
-            {
-                "name": "Lizzo",
-                "skid": 5031783,
-            },
-            {
-                "name": "Ed Sheeran",
-                "skid": 2083334,
-            },
-        ],
+        "data2019": "data/pop2019.csv",
+        "data2020": "data/pop2020.csv",
     },
     //Rap
     {
         "name": "Rap",
-        "color2019": null,
-        "color2020": null,
-        "artists2020": [
-            {
-                "name": "Roddy Ricch",
-                "skskid": 9728669,
-            },
-            {
-                "name": "DaBaby",
-                "skskid": 9883244,
-            },
-            {
-                "name": "Lil Baby",
-                "skskid": 9438699,
-            },
-            {
-                "name": "Drake",
-                "skskid": 556955,
-            },
-            {
-                "name": "Megan Thee Stallion",
-                "skid": 9701784,
-            },
-            {
-                "name": "Juice WRLD",
-                "skid": 9550809,
-            },
-            {
-                "name": "Pop Smoke",
-                "skid": 10071322,
-            },
-            {
-                "name": "Arizona Zervas",
-                "skid": 8896099,
-            },
-            {
-                "name": "Lil Uzi Vert",
-                "skid": 8081893,
-            },
-            {
-                "name": "Travis Scott",
-                "skid": 6008144,
-            },
-        ],
-        "artists2019": [
-            {
-                "name": "Post Malone",
-                "skid": 8508053,
-            },
-            {
-                "name": "Lil Nas X",
-                "skid": 10001194,
-            },
-            {
-                "name": "Cardi B",
-                "skid": 8962314,
-            },
-            {
-                "name": "Travis Scott",
-                "skid": 6008144,
-            },
-            {
-                "name": "DaBaby",
-                "skid": 9883244,
-            },
-            {
-                "name": "Lizzo",
-                "skid": 5031783,
-            },
-            {
-                "name": "Swae Lee",
-                "skid": 9811034,
-            },
-            {
-                "name": "J. Cole",
-                "skid": 832745,
-            },
-            {
-                "name": "Lil Baby",
-                "skid": 9438699,
-            },
-            {
-                "name": "Drake",
-                "skid": 556955,
-            },
-        ],
+        "data2019": "data/rap2019.csv",
+        "data2020": "data/rap2020.csv",
     },
     //Rock
     {
         "name": "Rock",
-        "color2019": null,
-        "color2020": null,
-        "artists2020": [
-            {
-                "name": "Panic! At The Disco",
-                "skskid": 139037,
-            },
-            {
-                "name": "Machine Gun Kelly",
-                "skskid": 6630384,
-            },
-            {
-                "name": "Fleetwood Mac",
-                "skskid": 323006,
-            },
-            {
-                "name": "The Beatles",
-                "skskid": 417271,
-            },
-            {
-                "name": "twenty one pilots",
-                "skid": 3123851,
-            },
-            {
-                "name": "Queen",
-                "skid": 469904,
-            },
-            {
-                "name": "AJR",
-                "skid": 1880688,
-            },
-            {
-                "name": "Tame Impala",
-                "skid": 927852,
-            },
-            {
-                "name": "Elton John",
-                "skid": 371163,
-            },
-            {
-                "name": "Imagine Dragons",
-                "skid": 2506696,
-            },
-        ],
-        "artists2019": [
-            {
-                "name": "Panic! At The Disco",
-                "skid": 139037,
-            },
-            {
-                "name": "Queen",
-                "skid": 469904,
-            },
-            {
-                "name": "Imagine Dragons",
-                "skid": 2506696,
-            },
-            {
-                "name": "twenty one pilots",
-                "skid": 3123851,
-            },
-            {
-                "name": "The Beatles",
-                "skid": 417271,
-            },
-            {
-                "name": "Tool",
-                "skid": 521019,
-            },
-            {
-                "name": "Elton John",
-                "skid": 371163,
-            },
-            {
-                "name": "lovelytheband",
-                "skid": 9280609,
-            },
-            {
-                "name": "Mumford & Sons",
-                "skid": 2202327,
-            },
-            {
-                "name": "Hozier",
-                "skid": 7104269,
-            },
-        ],
+        "data2019": "data/rock2019.csv",
+        "data2020": "data/rock2020.csv",
     },
 ]
 
-// global variables
+//marker global variables
 let markers = [];
-let showing = []; 
+let showing = [];
+let stateShows2019 = [];
+let stateShows2020 = [];
 for (var i = 0; i < data.length; i++) {
     markers.push(null);
     showing.push(false);
+    stateShows2019.push([]);
+    stateShows2020.push([]);
+    for(var j = 0; j < 52; j++) {
+        stateShows2019[i].push(0);
+        stateShows2020[i].push(0);
+    }
 }
 var legend = L.control({position: 'bottomleft'});
 
+//choropleth global variables
+let choropleth = [false, false];
+let values = [];
+let valuesIndexed = [];
+let geojsonPath = 'data/us-states.json';
+let geojson_data;
+let geojson_layer;
+let brew = new classyBrew();
+let info_panel = L.control();
 
 // initialize
 $( document ).ready(function() {
@@ -660,12 +93,168 @@ function createMap(lat,lon,zl){
 
 function sideBarItems(data) {
     data.forEach(function(item, index) {
+<<<<<<< HEAD
         $(".sidebar-tags").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleSidebarItem(${index});">${item.name}</div>`);
+=======
+        $(".sidebar-tags").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleGenreSidebarItem(${index});toggleChoroplethSidebarItem(2);">${item.name}</div>`);
+>>>>>>> 4d839406b158cc780effbcaa74b8f36fda690c86
     });
     $(".sidebar-tags").append(`<div class="sidebar-title">Artists</div>`);
 }
 
-function toggleSidebarItem(index) {
+function toggleChoroplethSidebarItem(index) {
+    var choropleth2019 = document.getElementById("choropleth2019");
+    var choropleth2020 = document.getElementById("choropleth2020");
+    if(index == 0) {
+        choropleth2019.classList.toggle("sidebar-item-active");
+        choropleth[0] = !choropleth[0];
+        if(choropleth[1]) {
+            choropleth2020.classList.toggle("sidebar-item-active");
+            choropleth[1] = false;
+        }
+    }
+    else if(index == 1) {
+        choropleth2020.classList.toggle("sidebar-item-active");
+        choropleth[1] = !choropleth[1];
+        if(choropleth[0]) {
+            choropleth2019.classList.toggle("sidebar-item-active");
+            choropleth[0] = false;
+        }
+    }
+    if(!choropleth[0] && !choropleth[1]) {
+        info_panel.remove();
+        geojson_layer.removeLayer(info_panel);
+        if (geojson_layer){
+            geojson_layer.clearLayers()
+        }
+    }
+    else {
+        $.getJSON(geojsonPath, function(data) {
+            geojson_data = data;
+            if(choropleth[0]) {
+                mapGeoJSON(2019);
+            }
+            else {
+                mapGeoJSON(2020);
+            }
+        })
+    }
+}
+
+function mapGeoJSON(year) {
+    if (geojson_layer){
+		geojson_layer.clearLayers()
+	}
+    fieldtomap = "density";
+	// create an empty array
+	values = [
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 0, 0];
+
+	// based on the provided field, enter each value into the array
+	geojson_data.features.forEach(function(item, index){
+        showCount = 0;
+        for(var i = 0; i < showing.length; i++) {
+            if(showing[i]) {
+                showCount += (year == 2019 ? stateShows2019[i][index] : stateShows2020[i][index]);
+            }
+        }
+		values[index] = showCount;
+	})
+    valuesIndexed = [];
+    for(var i = 0; i < values.length; i++) {
+        valuesIndexed.push(values[i]);
+    }
+	// set up the "brew" options
+	brew.setSeries(values);
+	brew.setNumClasses(5);
+	brew.setColorCode('YlOrRd');
+	brew.classify('quantiles');
+
+	// create the layer and add to map
+	geojson_layer = L.geoJson(geojson_data,{
+		style: getStyle,
+		onEachFeature: onEachFeature // actions on each feature
+	}).addTo(map);
+
+	map.fitBounds(geojson_layer.getBounds())
+    createInfoPanel();
+}
+
+function getStyle(feature){
+	return {
+		stroke: true,
+		color: 'white',
+		weight: 1,
+		fill: true,
+		fillColor: brew.getColorInRange(valuesIndexed[feature.id]),
+		fillOpacity: 0.8
+	}
+}
+
+function onEachFeature(feature, layer) {
+	layer.on({
+		mouseover: highlightFeature,
+		mouseout: resetHighlight,
+	});
+}
+
+// on mouse over, highlight the feature
+function highlightFeature(e) {
+	var layer = e.target;
+
+	// style to use on mouse over
+	layer.setStyle({
+		weight: 2,
+		color: '#666',
+		fillOpacity: 0.7
+	});
+
+	if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		layer.bringToFront();
+	}
+    info_panel.update(layer.feature);
+}
+
+// on mouse out, reset the style, otherwise, it will remain highlighted
+function resetHighlight(e) {
+	geojson_layer.resetStyle(e.target);
+    info_panel.update() // resets infopanel
+}
+
+function createInfoPanel(){
+
+	info_panel.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+		this.update();
+		return this._div;
+	};
+
+	// method that we will use to update the control based on feature properties passed
+	info_panel.update = function (feature) {
+		// if feature is highlighted
+		if(feature){
+			this._div.innerHTML = `<b>${feature.properties.name}</b><br>Shows: ${valuesIndexed[feature.id]}`;
+		}
+		// if feature is not highlighted
+		else
+		{
+			this._div.innerHTML = 'Hover over a state';
+		}
+	};
+
+	info_panel.addTo(map);
+}
+
+function toggleGenreSidebarItem(index) {
     var sidebarItem = document.getElementById(data[index].name);
     sidebarItem.classList.toggle("sidebar-item-active");
 }
@@ -677,12 +266,30 @@ function loadAndMapData(index) {
         color2 = getRandomColor();
         data[index].color2020 = color1;
         data[index].color2019 = color2;
-        data[index].artists2020.forEach(function(artist) {
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist.name, color1);
-        });
-        data[index].artists2019.forEach(function(artist) {
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist.name, color2);
-        });
+        if(!data[index].skid) {
+            Papa.parse(data[index].data2020, {
+                header: true,
+                download: true,
+                complete: function(res) {
+                    res.data.forEach(function(artist) {
+                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1, 2020);
+                    });
+                }
+            });
+            Papa.parse(data[index].data2019, {
+                header: true,
+                download: true,
+                complete: function(res) {
+                    res.data.forEach(function(artist) {
+                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist, color2, 2019);
+                    });
+                }
+            });
+        }
+        else {
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, data[index], color1, 2020);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, data[index], color2, 2019);
+        }
         markers[index].addTo(map);
         showing[index] = true;
         renderLegend();
@@ -703,17 +310,17 @@ function renderLegend() {
     map.removeLayer(legend);
     legend.onAdd = function () {
         var div = L.DomUtil.create('div', 'info legend');
-        labels = ['<strong>Legend</strong>']
+        labels = ['<strong style="font-family:Montserrat">Legend</strong>']
         for (var i = 0; i < data.length; i++) {
             if(showing[i]) {
                 div.innerHTML += 
                 labels.push(
                     '<i class="circle" style="background:' + data[i].color2019 + '"></i> ' +
-                data[i].name + " 2019");
+                    '<span style="font-family:Montserrat">' + data[i].name + " 2019</span>");
                 div.innerHTML += 
                 labels.push(
                     '<i class="circle" style="background:' + data[i].color2020 + '"></i> ' +
-                data[i].name + " 2020");
+                    '<span style="font-family:Montserrat">' + data[i].name + " 2020</span>");
             }
         }
         div.innerHTML = labels.join('<br>');
@@ -750,37 +357,90 @@ function songKickArtistSearch(artist) {
     })
     .then((myJson) => {
         let resultsPage = myJson.resultsPage;
-        if(resultsPage.totalEntries) {
+
+        if(!resultsPage.totalEntries) {
+            alert("No Artist Found!");
+        }
+        else {
             artistName = myJson.resultsPage.results.artist[0].displayName;
             artistId = myJson.resultsPage.results.artist[0].id;
             markers.push(null);
             showing.push(false);
-            data.push({
-                "name": artistName,
-                "color2019": null,
-                "color2020": null,
-                "artists2019": [
-                    {
+            stateShows2019.push([
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 0, 0]);
+            stateShows2020.push([
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 
+                0, 0, 0, 0, 0, 0, 0]);
+            var details = {
+                "grant_type": "client_credentials",
+            };
+            var formBody = [];
+            for (var property in details) {
+              var encodedKey = encodeURIComponent(property);
+              var encodedValue = encodeURIComponent(details[property]);
+              formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+            fetch(`https://accounts.spotify.com/api/token`, {
+                method: 'post',
+                headers: {
+                    "Authorization": "Basic YmQ0YjY3YzhlZDY5NGIzMmI2MzMwYjU2NGUzMTk2YmE6MzU1MzA2YzI0ZDVkNDgxNjhiMDYxODBiMTRkM2Q3N2Q",
+                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                },
+                body: formBody,
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((authResponse) => {
+                console.log(authResponse);
+                fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1`, {
+                    headers: {
+                        "Authorization": `Bearer ${authResponse.access_token}`,
+                    },
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((spotifyJson) => {
+                    if(!spotifyJson.artists || !spotifyJson.artists.total) {
+                        data.push({
+                            "name": artistName,
+                            "skid": artistId,
+                        });
+                        $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
+                        return;
+                    }
+                    data.push({
                         "name": artistName,
                         "skid": artistId,
-                    }
-                ],
-                "artists2020": [
-                    {
-                        "name": artistName,
-                        "skid": artistId,
-                    }
-                ],
+                        "spid": spotifyJson.artists.items[0].id,
+                    });
+                    $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
+                });
             });
-            $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleSidebarItem(${data.length-1});">${artistName}</div>`);
-        }
-        else {
-            alert("No Artist Found!");
         }
     });
 }
 
-function songKick(index, url, artist, color) {
+function songKick(index, url, artist, color, year) {
 	fetch(url)
 	.then((response) => {
 		return response.json();
@@ -801,20 +461,353 @@ function songKick(index, url, artist, color) {
 					let marker = L.circleMarker([event.location.lat, event.location.lng], markerOptions).on('mouseover',function()
 					{
 						this.bindPopup(`
-                        <div>Artist: ${artist}</div><br>
-                        <div>Event: ${event.displayName}</div><br>
-                        <div>Date & Time: ${event.start.date} ${event.start.time ? event.start.time : ""}</div><br>
-                        <div>Venue: ${event.venue.displayName}</div>`).openPopup();
+                        <span class="circle" style="background:${color}"></span><span class="popup-title">   ${event.displayName}</span><br>
+                        <span>Artist: ${artist.spid ? `<a href="https://open.spotify.com/artist/${artist.spid}" target="_blank">${artist.name}</a>` : artist.name}</span><br>
+                        <span>${event.start.time ? `Date & Time: ${event.start.date} at ${event.start.time}` : `Date: ${event.start.date}`}</span><br>
+                        <span>Venue: ${event.venue.displayName}, ${event.location.city}</span><br>
+                        <div>Popularity:</div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-container" style="width:${(200-57)*event.popularity}px;background-color:${color}"></div>
+                        </div>`, {minWidth: 300}).openPopup();
 					});
 					markers[index].addLayer(marker);
 				}
+                //If show in US
+                if(event.venue && event.venue.metroArea && event.venue.metroArea.country.displayName == "US") {
+                    incrementStateShows(index, year, event.venue.metroArea.state.displayName);
+                }
 				count += 1;
 			});
 			if((myJson.resultsPage.page-1) * 50 + count < myJson.resultsPage.totalEntries) {
-				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color);
+				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color, year);
 			}
+            toggleChoroplethSidebarItem(2);
 		}
 	});
+}
+
+function incrementStateShows(index, year, state) {
+    if(year == 2020) {
+        switch(state) {
+            case "AL":
+                stateShows2020[index][0] += 1;
+                break;
+            case "AK":
+                stateShows2020[index][1] += 1;
+                break;
+            case "AZ":
+                stateShows2020[index][2] += 1;
+                break;
+            case "AR":
+                stateShows2020[index][3] += 1;
+                break;
+            case "CA":
+                console.log("California");
+                stateShows2020[index][4] += 1;
+                break;
+            case "CO":
+                stateShows2020[index][5] += 1;
+                break;
+            case "CT":
+                stateShows2020[index][6] += 1;
+                break;
+            case "DE":
+                stateShows2020[index][7] += 1;
+                break;
+            case "DC":
+                stateShows2020[index][8] += 1;
+                break;
+            case "FL":
+                stateShows2020[index][9] += 1;
+                break;
+            case "GA":
+                stateShows2020[index][10] += 1;
+                break;
+            case "HI":
+                stateShows2020[index][11] += 1;
+                break;
+            case "ID":
+                stateShows2020[index][12] += 1;
+                break;
+            case "IL":
+                stateShows2020[index][13] += 1;
+                break;
+            case "IN":
+                stateShows2020[index][14] += 1;
+                break;
+            case "IA":
+                stateShows2020[index][15] += 1;
+                break;
+            case "KS":
+                stateShows2020[index][16] += 1;
+                break;
+            case "KY":
+                stateShows2020[index][17] += 1;
+                break;
+            case "LA":
+                stateShows2020[index][18] += 1;
+                break;
+            case "ME":
+                stateShows2020[index][19] += 1;
+                break;
+            case "MD":
+                stateShows2020[index][20] += 1;
+                break;
+            case "MA":
+                stateShows2020[index][21] += 1;
+                break;
+            case "MI":
+                stateShows2020[index][22] += 1;
+                break;
+            case "MN":
+                stateShows2020[index][23] += 1;
+                break;
+            case "MS":
+                stateShows2020[index][24] += 1;
+                break;
+            case "MO":
+                stateShows2020[index][25] += 1;
+                break;
+            case "MT":
+                stateShows2020[index][26] += 1;
+                break;
+            case "NE":
+                stateShows2020[index][27] += 1;
+                break;
+            case "NV":
+                stateShows2020[index][28] += 1;
+                break;
+            case "NH":
+                stateShows2020[index][29] += 1;
+                break;
+            case "NJ":
+                stateShows2020[index][30] += 1;
+                break;
+            case "NM":
+                stateShows2020[index][31] += 1;
+                break;
+            case "NY":
+                stateShows2020[index][32] += 1;
+                break;
+            case "NC":
+                stateShows2020[index][33] += 1;
+                break;
+            case "ND":
+                stateShows2020[index][34] += 1;
+                break;
+            case "OH":
+                stateShows2020[index][35] += 1;
+                break;
+            case "OK":
+                stateShows2020[index][36] += 1;
+                break;
+            case "OR":
+                stateShows2020[index][37] += 1;
+                break;
+            case "PA":
+                stateShows2020[index][38] += 1;
+                break;
+            case "RI":
+                stateShows2020[index][39] += 1;
+                break;
+            case "SC":
+                stateShows2020[index][40] += 1;
+                break;
+            case "SD":
+                stateShows2020[index][41] += 1;
+                break;
+            case "TN":
+                stateShows2020[index][42] += 1;
+                break;
+            case "TX":
+                stateShows2020[index][43] += 1;
+                break;
+            case "UT":
+                stateShows2020[index][44] += 1;
+                break;
+            case "VT":
+                stateShows2020[index][45] += 1;
+                break;
+            case "VA":
+                stateShows2020[index][46] += 1;
+                break;
+            case "WA":
+                stateShows2020[index][47] += 1;
+                break;
+            case "WV":
+                stateShows2020[index][48] += 1;
+                break;
+            case "WI":
+                stateShows2020[index][49] += 1;
+                break;
+            case "WY":
+                stateShows2020[index][50] += 1;
+                break;
+            case "PR":
+                stateShows2020[index][51] += 1;
+                break;
+        }
+    }
+    else {
+        switch(state) {
+            case "AL":
+                stateShows2019[index][0] += 1;
+                break;
+            case "AK":
+                stateShows2019[index][1] += 1;
+                break;
+            case "AZ":
+                stateShows2019[index][2] += 1;
+                break;
+            case "AR":
+                stateShows2019[index][3] += 1;
+                break;
+            case "CA":
+                stateShows2019[index][4] += 1;
+                break;
+            case "CO":
+                stateShows2019[index][5] += 1;
+                break;
+            case "CT":
+                stateShows2019[index][6] += 1;
+                break;
+            case "DE":
+                stateShows2019[index][7] += 1;
+                break;
+            case "DC":
+                stateShows2019[index][8] += 1;
+                break;
+            case "FL":
+                stateShows2019[index][9] += 1;
+                break;
+            case "GA":
+                stateShows2019[index][10] += 1;
+                break;
+            case "HI":
+                stateShows2019[index][11] += 1;
+                break;
+            case "ID":
+                stateShows2019[index][12] += 1;
+                break;
+            case "IL":
+                stateShows2019[index][13] += 1;
+                break;
+            case "IN":
+                stateShows2019[index][14] += 1;
+                break;
+            case "IA":
+                stateShows2019[index][15] += 1;
+                break;
+            case "KS":
+                stateShows2019[index][16] += 1;
+                break;
+            case "KY":
+                stateShows2019[index][17] += 1;
+                break;
+            case "LA":
+                stateShows2019[index][18] += 1;
+                break;
+            case "ME":
+                stateShows2019[index][19] += 1;
+                break;
+            case "MD":
+                stateShows2019[index][20] += 1;
+                break;
+            case "MA":
+                stateShows2019[index][21] += 1;
+                break;
+            case "MI":
+                stateShows2019[index][22] += 1;
+                break;
+            case "MN":
+                stateShows2019[index][23] += 1;
+                break;
+            case "MS":
+                stateShows2019[index][24] += 1;
+                break;
+            case "MO":
+                stateShows2019[index][25] += 1;
+                break;
+            case "MT":
+                stateShows2019[index][26] += 1;
+                break;
+            case "NE":
+                stateShows2019[index][27] += 1;
+                break;
+            case "NV":
+                stateShows2019[index][28] += 1;
+                break;
+            case "NH":
+                stateShows2019[index][29] += 1;
+                break;
+            case "NJ":
+                stateShows2019[index][30] += 1;
+                break;
+            case "NM":
+                stateShows2019[index][31] += 1;
+                break;
+            case "NY":
+                stateShows2019[index][32] += 1;
+                break;
+            case "NC":
+                stateShows2019[index][33] += 1;
+                break;
+            case "ND":
+                stateShows2019[index][34] += 1;
+                break;
+            case "OH":
+                stateShows2019[index][35] += 1;
+                break;
+            case "OK":
+                stateShows2019[index][36] += 1;
+                break;
+            case "OR":
+                stateShows2019[index][37] += 1;
+                break;
+            case "PA":
+                stateShows2019[index][38] += 1;
+                break;
+            case "RI":
+                stateShows2019[index][39] += 1;
+                break;
+            case "SC":
+                stateShows2019[index][40] += 1;
+                break;
+            case "SD":
+                stateShows2019[index][41] += 1;
+                break;
+            case "TN":
+                stateShows2019[index][42] += 1;
+                break;
+            case "TX":
+                stateShows2019[index][43] += 1;
+                break;
+            case "UT":
+                stateShows2019[index][44] += 1;
+                break;
+            case "VT":
+                stateShows2019[index][45] += 1;
+                break;
+            case "VA":
+                stateShows2019[index][46] += 1;
+                break;
+            case "WA":
+                stateShows2019[index][47] += 1;
+                break;
+            case "WV":
+                stateShows2019[index][48] += 1;
+                break;
+            case "WI":
+                stateShows2019[index][49] += 1;
+                break;
+            case "WY":
+                stateShows2019[index][50] += 1;
+                break;
+            case "PR":
+                stateShows2019[index][51] += 1;
+                break;
+        }
+    }
 }
 
 function getRandomColor() {

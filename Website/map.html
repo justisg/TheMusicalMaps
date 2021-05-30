@@ -9,6 +9,12 @@
 
 	<!-- leaflet -->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	<style>
+		.leaflet-popup-content-wrapper, .leaflet-popup.tip {
+  			background-color: rgb(245, 241, 237);
+			font-family: "Montserrat", sans-serif;
+		}
+	</style>
 	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
 	<!-- jquery -->
@@ -17,6 +23,9 @@
 
     <!-- icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- classy brew -->
+	<script src="js/classybrew.js"></script>
 </head>
 <body>
 
@@ -35,10 +44,17 @@
         </nav>
     </header>
 		<div class="sidebar">
+<<<<<<< HEAD
 			<div class = "sidebar-tags">
 				<div class="sidebar-title">Genres</div>
 			</div>
 			<div class = "sidebar-chart">Hello</div>
+=======
+			<div class="sidebar-title">Choropleth (US)</div>
+			<div class="sidebar-item" id="choropleth2019" onclick="toggleChoroplethSidebarItem(0);">2019</div>
+			<div class="sidebar-item" id="choropleth2020" onclick="toggleChoroplethSidebarItem(1);">2020</div>
+			<div class="sidebar-title">Genres</div>
+>>>>>>> 4d839406b158cc780effbcaa74b8f36fda690c86
 		</div>
 		<div class="content">
 			<div id="map"></div>
