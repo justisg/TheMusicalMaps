@@ -22,10 +22,10 @@ html {
   height: 100%;
 }
 
-body {
+#body {
   display: grid;
   grid-template-rows: 80px 1fr 50px;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 20% 80%;
   grid-template-areas:
     "header header header"
     "sidebar content content"
@@ -121,12 +121,14 @@ header .search-container {
 }
 
 .sidebar-tags{
-  width:30%;
+  width:100%;
+  /* transition: 0.3s; */
 }
 
 .sidebar-chart{
-  width:70%;
-  background-color: red;
+  width:0%;
+  /* background-color: red; */
+  /* transition: 0.3s; */
 }
 
 .sidebar-item {
@@ -203,4 +205,12 @@ nav {
   grid-area: footer;
   padding: 10px;
   background-color: rgb(255, 254, 253);
+}
+
+.closebtn {
+	position: relative;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 690px;
 }

@@ -4,6 +4,9 @@ let lat = 0;
 let lon = 0;
 let zl = 2;
 
+let toggled = false;
+let chartclosed = true;
+
 let data = [
     //Classical
     {
@@ -93,11 +96,7 @@ function createMap(lat,lon,zl){
 
 function sideBarItems(data) {
     data.forEach(function(item, index) {
-<<<<<<< HEAD
-        $(".sidebar-tags").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleSidebarItem(${index});">${item.name}</div>`);
-=======
         $(".sidebar-tags").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleGenreSidebarItem(${index});toggleChoroplethSidebarItem(2);">${item.name}</div>`);
->>>>>>> 4d839406b158cc780effbcaa74b8f36fda690c86
     });
     $(".sidebar-tags").append(`<div class="sidebar-title">Artists</div>`);
 }
@@ -121,9 +120,9 @@ function toggleChoroplethSidebarItem(index) {
             choropleth[0] = false;
         }
     }
-    if(!choropleth[0] && !choropleth[1]) {
-        info_panel.remove();
+    if(!choropleth[0] && !choropleth[1] && geojson_layer!=undefined) {
         geojson_layer.removeLayer(info_panel);
+        info_panel.remove();
         if (geojson_layer){
             geojson_layer.clearLayers()
         }
@@ -260,6 +259,7 @@ function toggleGenreSidebarItem(index) {
 }
 
 function loadAndMapData(index) {
+    createDashboard();
     if(!markers[index]) {
         markers[index] = L.featureGroup();
         color1 = getRandomColor();
@@ -327,6 +327,57 @@ function renderLegend() {
         return div;
     };
     legend.addTo(map);
+}
+
+function createDashboard(properties){
+    // document.getElementById("sidebar-chart").innerHTML=`<a href="javascript:void(0)" class="closebtn" onclick="closeChart()">&times;</a>`;
+    toggled = !toggled;
+    if(toggled){
+        // clear dashboard
+        $('.sidebar-chart').empty();
+
+        console.log("properties: ",properties)
+
+        // chart title
+        let title = 'Championships Won';
+
+        // data values
+        let data = [27,17,17,20];
+
+        // data fields
+        let fields = ['New York Yankees','LA Lakers','Boston Celtics','Manchester United'];
+
+        // set chart options
+        let options = {
+            chart: {
+                type: 'bar',
+                height: 300,
+                animations: {
+                    enabled: true,
+                }
+            },
+            title: {
+                text: title,
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [
+                {
+                    data: data
+                }
+            ],
+            xaxis: {
+                categories: fields
+            }
+        }
+
+        // create the chart
+        let chart = new ApexCharts(document.querySelector('.sidebar-chart'), options)
+        chart.render()
+    }
 }
 
 document.getElementById('searchbox').onkeypress = function(e){
@@ -425,7 +476,7 @@ function songKickArtistSearch(artist) {
                             "name": artistName,
                             "skid": artistId,
                         });
-                        $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
+                        $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
                         return;
                     }
                     data.push({
@@ -433,7 +484,7 @@ function songKickArtistSearch(artist) {
                         "skid": artistId,
                         "spid": spotifyJson.artists.items[0].id,
                     });
-                    $(".sidebar").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
+                    $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
                 });
             });
         }
@@ -818,3 +869,25 @@ function getRandomColor() {
     }
     return color;
   }
+
+function toggleChart(){
+    if(chartclosed){
+        document.getElementById("body").style.gridTemplateColumns = "60% 40%";
+        document.getElementById("sidebar-tags").style.width = "30%";
+        document.getElementById("sidebar-chart").style.width = "70%";
+        chartclosed = !chartclosed;
+    }
+    else{
+        document.getElementById("body").style.gridTemplateColumns = "20% 80%";
+        document.getElementById("sidebar-tags").style.width = "100%";
+        document.getElementById("sidebar-chart").style.width = "00%";
+        chartclosed = !chartclosed;
+    }
+    
+}
+
+function closeChart(){
+    document.getElementById("body").style.gridTemplateColumns = "20% 80%";
+    document.getElementById("sidebar-tags").style.width = "100%";
+    document.getElementById("sidebar-chart").style.width = "00%";
+}
