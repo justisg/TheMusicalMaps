@@ -63,6 +63,10 @@ let genrePopularity2019 = [];
 let genrePopularity2020 = [];
 let showsChart;
 let popularityChart;
+let cacheShows2019;
+let cacheShows2020;
+let cachePop2019;
+let cachePop2020;
 for (var i = 0; i < data.length; i++) {
     markers.push(null);
     showing.push(false);
@@ -359,10 +363,23 @@ function renderLegend() {
 
 function renderDashboard(){
     // clear dashboard
-    $('.sidebar-chart').empty();
+    //$('.sidebar-chart').empty();
+    console.log("render");
     var showsSeries = [];
     var popularitySeries = [];
     var colors = [];
+    if(!cacheShows2019) {
+        cacheShows2019 = [];
+    }
+    if(!cacheShows2020) {
+        cacheShows2020 = [];
+    }
+    if(!cachePop2019) {
+        cachePop2019 = [];
+    }
+    if(!cachePop2020) {
+        cachePop2020 = [];
+    }
     for(var i = 0; i < showing.length; i++) {
         if(showing[i]) {
             showsSeries.push({
@@ -661,7 +678,10 @@ function songKick(index, url, artist, color, year, curr, max) {
 	})
     .then(() => {
         if(curr == max) {
-            setTimeout(renderDashboard, 500);
+            renderDashboard();
+            setTimeout(renderDashboard, 1000);
+            setTimeout(renderDashboard, 3000);
+            setTimeout(renderDashboard, 6000);
         }
     })
 }
