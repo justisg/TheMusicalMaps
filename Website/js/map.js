@@ -57,6 +57,8 @@ let markers = [];
 let showing = [];
 let stateShows2019 = [];
 let stateShows2020 = [];
+let genreShows2019 = [];
+let genreShows2020 = [];
 for (var i = 0; i < data.length; i++) {
     markers.push(null);
     showing.push(false);
@@ -65,6 +67,12 @@ for (var i = 0; i < data.length; i++) {
     for(var j = 0; j < 52; j++) {
         stateShows2019[i].push(0);
         stateShows2020[i].push(0);
+    }
+    genreShows2019.push([]);
+    genreShows2020.push([]);
+    for(var j = 0; j < 12; j++) {
+        genreShows2019[i].push(0);
+        genreShows2020[i].push(0);
     }
 }
 var legend = L.control({position: 'bottomleft'});
@@ -82,6 +90,7 @@ let info_panel = L.control();
 // initialize
 $( document ).ready(function() {
 	sideBarItems(data);
+    renderDashboard();
 	createMap(lat,lon,zl);
 });
 
@@ -183,8 +192,6 @@ function mapGeoJSON(year) {
 		style: getStyle,
 		onEachFeature: onEachFeature // actions on each feature
 	}).addTo(map);
-
-	map.fitBounds(geojson_layer.getBounds())
     createInfoPanel();
 }
 
@@ -259,7 +266,6 @@ function toggleGenreSidebarItem(index) {
 }
 
 function loadAndMapData(index) {
-    createDashboard();
     if(!markers[index]) {
         markers[index] = L.featureGroup();
         color1 = getRandomColor();
@@ -273,7 +279,7 @@ function loadAndMapData(index) {
                 complete: function(res) {
                     res.data.forEach(function(artist) {
                         songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1, 2020);
-                    });
+                    })
                 }
             });
             Papa.parse(data[index].data2019, {
@@ -298,10 +304,12 @@ function loadAndMapData(index) {
     if(showing[index]) {
         map.removeLayer(markers[index]);
         showing[index] = false;
+        renderDashboard();
     }
     else {
         markers[index].addTo(map);
         showing[index] = true;
+        renderDashboard();
     }
     renderLegend();
 }
@@ -329,55 +337,70 @@ function renderLegend() {
     legend.addTo(map);
 }
 
-function createDashboard(properties){
-    // document.getElementById("sidebar-chart").innerHTML=`<a href="javascript:void(0)" class="closebtn" onclick="closeChart()">&times;</a>`;
-    toggled = !toggled;
-    if(toggled){
-        // clear dashboard
-        $('.sidebar-chart').empty();
+function clearDashboard() {
+    $('.sidebar-chart').empty();
+}
 
-        console.log("properties: ",properties)
-
-        // chart title
-        let title = 'Championships Won';
-
-        // data values
-        let data = [27,17,17,20];
-
-        // data fields
-        let fields = ['New York Yankees','LA Lakers','Boston Celtics','Manchester United'];
-
-        // set chart options
-        let options = {
-            chart: {
-                type: 'bar',
-                height: 300,
-                animations: {
-                    enabled: true,
-                }
-            },
-            title: {
-                text: title,
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true
-                }
-            },
-            series: [
-                {
-                    data: data
-                }
-            ],
-            xaxis: {
-                categories: fields
-            }
+function renderDashboard(){
+    console.log("Render dashboard");
+    // clear dashboard
+    $('.sidebar-chart').empty();
+    var series = [];
+    var colors = [];
+    for(var i = 0; i < showing.length; i++) {
+        if(showing[i]) {
+            series.push({
+                name: `${data[i].name} 2019`,
+                data: genreShows2019[i],
+            });
+            series.push({
+                name: `${data[i].name} 2020`,
+                data: genreShows2020[i],
+            });
+            colors.push(data[i].color2019);
+            colors.push(data[i].color2020);
         }
-
-        // create the chart
-        let chart = new ApexCharts(document.querySelector('.sidebar-chart'), options)
-        chart.render()
     }
+    let options = {
+        series: series,
+        chart: {
+            height: 350,
+            type: 'line',
+            zoom: {
+                enabled: false
+            },
+            animations: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        title: {
+            text: 'Number of Shows by Month',
+            align: 'left'
+        },
+        grid: {
+            row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+            },
+        },
+        colors: colors,
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        },
+        tooltip: {
+            enabled: false,
+        }
+    };
+
+    // create the chart
+    let chart = new ApexCharts(document.querySelector('.sidebar-chart'), options);
+    chart.render();
 }
 
 document.getElementById('searchbox').onkeypress = function(e){
@@ -439,6 +462,8 @@ function songKickArtistSearch(artist) {
                 0, 0, 0, 0, 0, 
                 0, 0, 0, 0, 0, 
                 0, 0, 0, 0, 0, 0, 0]);
+            genreShows2019.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+            genreShows2020.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
             var details = {
                 "grant_type": "client_credentials",
             };
@@ -476,7 +501,7 @@ function songKickArtistSearch(artist) {
                             "name": artistName,
                             "skid": artistId,
                         });
-                        $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
+                        $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);renderDashboard();">${artistName}</div>`);
                         return;
                     }
                     data.push({
@@ -484,7 +509,7 @@ function songKickArtistSearch(artist) {
                         "skid": artistId,
                         "spid": spotifyJson.artists.items[0].id,
                     });
-                    $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);">${artistName}</div>`);
+                    $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);renderDashboard();">${artistName}</div>`);
                 });
             });
         }
@@ -527,6 +552,9 @@ function songKick(index, url, artist, color, year) {
                 if(event.venue && event.venue.metroArea && event.venue.metroArea.country.displayName == "US") {
                     incrementStateShows(index, year, event.venue.metroArea.state.displayName);
                 }
+                if(event.start && event.start.date) {
+                    incrementGenreShows(index, year, event.start.date.substring(5, 7));
+                }
 				count += 1;
 			});
 			if((myJson.resultsPage.page-1) * 50 + count < myJson.resultsPage.totalEntries) {
@@ -534,7 +562,10 @@ function songKick(index, url, artist, color, year) {
 			}
             toggleChoroplethSidebarItem(2);
 		}
-	});
+	})
+    .then(() => {
+        renderDashboard();
+    })
 }
 
 function incrementStateShows(index, year, state) {
@@ -553,7 +584,6 @@ function incrementStateShows(index, year, state) {
                 stateShows2020[index][3] += 1;
                 break;
             case "CA":
-                console.log("California");
                 stateShows2020[index][4] += 1;
                 break;
             case "CO":
@@ -861,6 +891,90 @@ function incrementStateShows(index, year, state) {
     }
 }
 
+function incrementGenreShows(index, year, month) {
+    if(year == 2020) {
+        switch(month) {
+            case "01":
+                genreShows2020[index][0] += 1;
+                break;
+            case "02":
+                genreShows2020[index][1] += 1;
+                break;
+            case "03":
+                genreShows2020[index][2] += 1;
+                break;
+            case "04":
+                genreShows2020[index][3] += 1;
+                break;
+            case "05":
+                genreShows2020[index][4] += 1;
+                break;
+            case "06":
+                genreShows2020[index][5] += 1;
+                break;
+            case "07":
+                genreShows2020[index][6] += 1;
+                break;
+            case "08":
+                genreShows2020[index][7] += 1;
+                break;
+            case "09":
+                genreShows2020[index][8] += 1;
+                break;
+            case "10":
+                genreShows2020[index][9] += 1;
+                break;
+            case "11":
+                genreShows2020[index][10] += 1;
+                break;
+            case "12":
+                genreShows2020[index][11] += 1;
+                break;
+        }
+
+    }
+    else {
+        switch(month) {
+            case "01":
+                genreShows2019[index][0] += 1;
+                break;
+            case "02":
+                genreShows2019[index][1] += 1;
+                break;
+            case "03":
+                genreShows2019[index][2] += 1;
+                break;
+            case "04":
+                genreShows2019[index][3] += 1;
+                break;
+            case "05":
+                genreShows2019[index][4] += 1;
+                break;
+            case "06":
+                genreShows2019[index][5] += 1;
+                break;
+            case "07":
+                genreShows2019[index][6] += 1;
+                break;
+            case "08":
+                genreShows2019[index][7] += 1;
+                break;
+            case "09":
+                genreShows2019[index][8] += 1;
+                break;
+            case "10":
+                genreShows2019[index][9] += 1;
+                break;
+            case "11":
+                genreShows2019[index][10] += 1;
+                break;
+            case "12":
+                genreShows2019[index][11] += 1;
+                break;
+        }
+    }
+}
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -871,10 +985,13 @@ function getRandomColor() {
   }
 
 function toggleChart(){
+    var toggleChart = document.getElementById("toggleChart");
+    toggleChart.classList.toggle("sidebar-item-active");
     if(chartclosed){
         document.getElementById("body").style.gridTemplateColumns = "60% 40%";
         document.getElementById("sidebar-tags").style.width = "30%";
         document.getElementById("sidebar-chart").style.width = "70%";
+        renderDashboard();
         chartclosed = !chartclosed;
     }
     else{
@@ -883,11 +1000,4 @@ function toggleChart(){
         document.getElementById("sidebar-chart").style.width = "00%";
         chartclosed = !chartclosed;
     }
-    
-}
-
-function closeChart(){
-    document.getElementById("body").style.gridTemplateColumns = "20% 80%";
-    document.getElementById("sidebar-tags").style.width = "100%";
-    document.getElementById("sidebar-chart").style.width = "00%";
 }
