@@ -297,8 +297,8 @@ function loadAndMapData(index) {
                 header: true,
                 download: true,
                 complete: function(res) {
-                    res.data.forEach(function(artist) {
-                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1, 2020);
+                    res.data.forEach(function(artist, i) {
+                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, artist, color1, 2020, i+1, res.data.length);
                     })
                 }
             });
@@ -307,14 +307,14 @@ function loadAndMapData(index) {
                 download: true,
                 complete: function(res) {
                     res.data.forEach(function(artist) {
-                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist, color2, 2019);
+                        songKick(index, `https://api.songkick.com/api/3.0/artists/${artist.skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, artist, color2, 2019, i+1, res.data.length);
                     });
                 }
             });
         }
         else {
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, data[index], color1, 2020);
-            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, data[index], color2, 2019);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2020-01-01&max_date=2020-12-31`, data[index], color1, 2020, 1, 1);
+            songKick(index, `https://api.songkick.com/api/3.0/artists/${data[index].skid}/gigography.json?apikey=Z2JWQTvgk4tsCdDn&min_date=2019-01-01&max_date=2019-12-31`, data[index], color2, 2019, 1, 1);
         }
         markers[index].addTo(map);
         showing[index] = true;
@@ -376,17 +376,17 @@ function renderDashboard(){
             popularity2019 = [];
             popularity2020 = [];
             for(var j = 0; j < 12; j++) {
-                if(genreShows2019[i][j] == 0) {
-                    popularity2019.push(0);
-                }
-                else {
-                    popularity2019.push(genrePopularity2019[i][j]/genreShows2019[i][j]);
-                }
                 if(genreShows2020[i][j] == 0) {
                     popularity2020.push(0);
                 }
                 else {
                     popularity2020.push(genrePopularity2020[i][j]/genreShows2020[i][j]);
+                }
+                if(genreShows2019[i][j] == 0) {
+                    popularity2019.push(0);
+                }
+                else {
+                    popularity2019.push(genrePopularity2019[i][j]/genreShows2019[i][j]);
                 }
             }
             popularitySeries.push({
@@ -612,7 +612,7 @@ function songKickArtistSearch(artist) {
     });
 }
 
-function songKick(index, url, artist, color, year) {
+function songKick(index, url, artist, color, year, curr, max) {
 	fetch(url)
 	.then((response) => {
 		return response.json();
@@ -654,13 +654,15 @@ function songKick(index, url, artist, color, year) {
 				count += 1;
 			});
 			if((myJson.resultsPage.page-1) * 50 + count < myJson.resultsPage.totalEntries) {
-				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color, year);
+				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color, year, curr, max);
 			}
             toggleChoroplethSidebarItem(2);
 		}
 	})
     .then(() => {
-        renderDashboard();
+        if(curr == max) {
+            setTimeout(renderDashboard, 500);
+        }
     })
 }
 
