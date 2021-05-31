@@ -118,7 +118,6 @@ header .search-container {
   padding: 5px;
   margin: 5px;
   color: black;
-  cursor: pointer;
   font-size: large;
   font-weight: 600;
   text-align: center;
@@ -129,8 +128,13 @@ header .search-container {
   /* transition: 0.3s; */
 }
 
-.sidebar-chart {
+.sidebar-dashboard {
   width: 0%;
+  overflow: scroll;
+}
+
+.sidebar-chart {
+  width: 100%;
   /* background-color: red; */
   /* transition: 0.3s; */
 }

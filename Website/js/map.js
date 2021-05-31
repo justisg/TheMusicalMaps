@@ -59,6 +59,10 @@ let stateShows2019 = [];
 let stateShows2020 = [];
 let genreShows2019 = [];
 let genreShows2020 = [];
+let genrePopularity2019 = [];
+let genrePopularity2020 = [];
+let showsChart;
+let popularityChart;
 for (var i = 0; i < data.length; i++) {
     markers.push(null);
     showing.push(false);
@@ -73,6 +77,12 @@ for (var i = 0; i < data.length; i++) {
     for(var j = 0; j < 12; j++) {
         genreShows2019[i].push(0);
         genreShows2020[i].push(0);
+    }
+    genrePopularity2019.push([]);
+    genrePopularity2020.push([]);
+    for(var j = 0; j < 12; j++) {
+        genrePopularity2019[i].push(0);
+        genrePopularity2020[i].push(0);
     }
 }
 var legend = L.control({position: 'bottomleft'});
@@ -350,24 +360,49 @@ function renderLegend() {
 function renderDashboard(){
     // clear dashboard
     $('.sidebar-chart').empty();
-    var series = [];
+    var showsSeries = [];
+    var popularitySeries = [];
     var colors = [];
     for(var i = 0; i < showing.length; i++) {
         if(showing[i]) {
-            series.push({
+            showsSeries.push({
                 name: `${data[i].name} 2019`,
                 data: genreShows2019[i],
             });
-            series.push({
+            showsSeries.push({
                 name: `${data[i].name} 2020`,
                 data: genreShows2020[i],
+            });
+            popularity2019 = [];
+            popularity2020 = [];
+            for(var j = 0; j < 12; j++) {
+                if(genreShows2019[i][j] == 0) {
+                    popularity2019.push(0);
+                }
+                else {
+                    popularity2019.push(genrePopularity2019[i][j]/genreShows2019[i][j]);
+                }
+                if(genreShows2020[i][j] == 0) {
+                    popularity2020.push(0);
+                }
+                else {
+                    popularity2020.push(genrePopularity2020[i][j]/genreShows2020[i][j]);
+                }
+            }
+            popularitySeries.push({
+                name: `${data[i].name} 2019`,
+                data: popularity2019,
+            });
+            popularitySeries.push({
+                name: `${data[i].name} 2020`,
+                data: popularity2020,
             });
             colors.push(data[i].color2019);
             colors.push(data[i].color2020);
         }
     }
-    let options = {
-        series: series,
+    let showsOptions = {
+        series: showsSeries,
         chart: {
             fontFamily: "Montserrat, sans-serif",
             height: '50%',
@@ -408,11 +443,69 @@ function renderDashboard(){
                 fontSize: '12px',
                 fontFamily: "Montserrat, sans-serif",
             },
-        }
+        },
     };
-    // create the chart
-    let showsChart = new ApexCharts(document.querySelector('.sidebar-chart'), options);
+    let popularityOptions = {
+        series: popularitySeries,
+        chart: {
+            fontFamily: "Montserrat, sans-serif",
+            height: '50%',
+            type: 'bar',
+            zoom: {
+                enabled: false,
+            },
+            animations: {
+                enabled: false,
+            },
+            toolbar: {
+                show: false,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        title: {
+            text: 'Average Popularity of Shows by Month',
+            align: 'center'
+        },
+        grid: {
+            row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+            },
+        },
+        colors: colors,
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        },
+        yaxis: {
+            decimalsInFloat: 3,
+        },
+        tooltip: {
+            enabled: true,
+            style: {
+                fontSize: '12px',
+                fontFamily: "Montserrat, sans-serif",
+            },
+        },
+        legend: {
+            show: true,
+        },
+    };
+    // create the charts
+    if(showsChart) {
+        showsChart.destroy();
+    }
+    if(popularityChart) {
+        popularityChart.destroy();
+    }
+    showsChart = new ApexCharts(document.querySelector('#sidebar-chart-1'), showsOptions);
+    popularityChart = new ApexCharts(document.querySelector('#sidebar-chart-2'), popularityOptions);
     showsChart.render();
+    popularityChart.render();
 }
 
 function searchArtist(){
@@ -466,6 +559,8 @@ function songKickArtistSearch(artist) {
                 0, 0, 0, 0, 0, 0, 0]);
             genreShows2019.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
             genreShows2020.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+            genrePopularity2019.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+            genrePopularity2020.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
             var details = {
                 "grant_type": "client_credentials",
             };
@@ -488,7 +583,6 @@ function songKickArtistSearch(artist) {
                 return response.json();
             })
             .then((authResponse) => {
-                console.log(authResponse);
                 fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=1`, {
                     headers: {
                         "Authorization": `Bearer ${authResponse.access_token}`,
@@ -554,8 +648,8 @@ function songKick(index, url, artist, color, year) {
                 if(event.venue && event.venue.metroArea && event.venue.metroArea.country.displayName == "US") {
                     incrementStateShows(index, year, event.venue.metroArea.state.displayName);
                 }
-                if(event.start && event.start.date) {
-                    incrementGenreShows(index, year, event.start.date.substring(5, 7));
+                if(event.start && event.start.date && event.popularity) {
+                    incrementGenreShows(index, year, event.start.date.substring(5, 7), event.popularity);
                 }
 				count += 1;
 			});
@@ -893,85 +987,108 @@ function incrementStateShows(index, year, state) {
     }
 }
 
-function incrementGenreShows(index, year, month) {
+function incrementGenreShows(index, year, month, popularity) {
     if(year == 2020) {
         switch(month) {
             case "01":
                 genreShows2020[index][0] += 1;
+                genrePopularity2020[index][0] += popularity;
                 break;
             case "02":
                 genreShows2020[index][1] += 1;
+                genrePopularity2020[index][1] += popularity;
                 break;
             case "03":
                 genreShows2020[index][2] += 1;
+                genrePopularity2020[index][2] += popularity;
                 break;
             case "04":
                 genreShows2020[index][3] += 1;
+                genrePopularity2020[index][3] += popularity;
                 break;
             case "05":
                 genreShows2020[index][4] += 1;
+                genrePopularity2020[index][4] += popularity;
                 break;
             case "06":
                 genreShows2020[index][5] += 1;
+                genrePopularity2020[index][5] += popularity;
                 break;
             case "07":
                 genreShows2020[index][6] += 1;
+                genrePopularity2020[index][6] += popularity;
                 break;
             case "08":
                 genreShows2020[index][7] += 1;
+                genrePopularity2020[index][7] += popularity;
                 break;
             case "09":
                 genreShows2020[index][8] += 1;
+                genrePopularity2020[index][8] += popularity;
                 break;
             case "10":
                 genreShows2020[index][9] += 1;
+                genrePopularity2020[index][9] += popularity;
                 break;
             case "11":
                 genreShows2020[index][10] += 1;
+                genrePopularity2020[index][10] += popularity;
                 break;
             case "12":
                 genreShows2020[index][11] += 1;
+                genrePopularity2020[index][11] += popularity;
                 break;
         }
-
     }
     else {
         switch(month) {
             case "01":
                 genreShows2019[index][0] += 1;
+                genrePopularity2019[index][0] += popularity;
                 break;
             case "02":
                 genreShows2019[index][1] += 1;
+                genrePopularity2019[index][1] += popularity;
                 break;
             case "03":
                 genreShows2019[index][2] += 1;
+                genrePopularity2019[index][2] += popularity;
                 break;
             case "04":
                 genreShows2019[index][3] += 1;
+                genrePopularity2019[index][3] += popularity;
                 break;
             case "05":
                 genreShows2019[index][4] += 1;
+                genrePopularity2019[index][4] += popularity;
                 break;
             case "06":
                 genreShows2019[index][5] += 1;
+                genrePopularity2019[index][5] += popularity;
                 break;
             case "07":
                 genreShows2019[index][6] += 1;
+                genrePopularity2019[index][6] += popularity;
                 break;
             case "08":
                 genreShows2019[index][7] += 1;
+                genrePopularity2019[index][7] += popularity;
                 break;
             case "09":
                 genreShows2019[index][8] += 1;
+                genrePopularity2019[index][8] += popularity;
                 break;
             case "10":
                 genreShows2019[index][9] += 1;
+                genrePopularity2019[index][9] += popularity;
                 break;
             case "11":
                 genreShows2019[index][10] += 1;
+                genrePopularity2019[index][10] += popularity;
                 break;
             case "12":
                 genreShows2019[index][11] += 1;
+                genrePopularity2019[index][11] += popularity;
                 break;
         }
     }
@@ -992,14 +1109,14 @@ function toggleChart(){
     if(chartclosed){
         document.getElementById("body").style.gridTemplateColumns = "50% 50%";
         document.getElementById("sidebar-tags").style.width = "30%";
-        document.getElementById("sidebar-chart").style.width = "70%";
+        document.getElementById("sidebar-dashboard").style.width = "70%";
         renderDashboard();
         chartclosed = !chartclosed;
     }
     else{
         document.getElementById("body").style.gridTemplateColumns = "20% 80%";
         document.getElementById("sidebar-tags").style.width = "100%";
-        document.getElementById("sidebar-chart").style.width = "00%";
+        document.getElementById("sidebar-dashboard").style.width = "00%";
         chartclosed = !chartclosed;
     }
 }
