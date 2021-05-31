@@ -94,6 +94,16 @@ $( document ).ready(function() {
 	createMap(lat,lon,zl);
 });
 
+document.getElementById('searchbox').onkeypress = function(e){
+    if (!e) e = window.event;
+    var keyCode = e.code || e.key;
+    if (keyCode == 'Enter'){
+        this.blur();
+        searchArtist();
+        return false;
+    }
+}
+
 // create the map
 function createMap(lat,lon,zl){
 	map = L.map('map').setView([lat,lon], zl);
@@ -337,12 +347,7 @@ function renderLegend() {
     legend.addTo(map);
 }
 
-function clearDashboard() {
-    $('.sidebar-chart').empty();
-}
-
 function renderDashboard(){
-    console.log("Render dashboard");
     // clear dashboard
     $('.sidebar-chart').empty();
     var series = [];
@@ -364,13 +369,17 @@ function renderDashboard(){
     let options = {
         series: series,
         chart: {
-            height: 350,
+            fontFamily: "Montserrat, sans-serif",
+            height: '50%',
             type: 'line',
             zoom: {
-                enabled: false
+                enabled: false,
             },
             animations: {
-                enabled: false
+                enabled: false,
+            },
+            toolbar: {
+                show: false,
             }
         },
         dataLabels: {
@@ -381,7 +390,7 @@ function renderDashboard(){
         },
         title: {
             text: 'Number of Shows by Month',
-            align: 'left'
+            align: 'center'
         },
         grid: {
             row: {
@@ -394,23 +403,16 @@ function renderDashboard(){
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         },
         tooltip: {
-            enabled: false,
+            enabled: true,
+            style: {
+                fontSize: '12px',
+                fontFamily: "Montserrat, sans-serif",
+            },
         }
     };
-
     // create the chart
-    let chart = new ApexCharts(document.querySelector('.sidebar-chart'), options);
-    chart.render();
-}
-
-document.getElementById('searchbox').onkeypress = function(e){
-    if (!e) e = window.event;
-    var keyCode = e.code || e.key;
-    if (keyCode == 'Enter'){
-        this.blur();
-        searchArtist();
-        return false;
-    }
+    let showsChart = new ApexCharts(document.querySelector('.sidebar-chart'), options);
+    showsChart.render();
 }
 
 function searchArtist(){
@@ -988,7 +990,7 @@ function toggleChart(){
     var toggleChart = document.getElementById("toggleChart");
     toggleChart.classList.toggle("sidebar-item-active");
     if(chartclosed){
-        document.getElementById("body").style.gridTemplateColumns = "60% 40%";
+        document.getElementById("body").style.gridTemplateColumns = "50% 50%";
         document.getElementById("sidebar-tags").style.width = "30%";
         document.getElementById("sidebar-chart").style.width = "70%";
         renderDashboard();

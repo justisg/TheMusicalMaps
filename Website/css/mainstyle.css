@@ -100,6 +100,10 @@ header .search-container {
   padding: 1px;
 }
 
+.apexcharts-tooltip {
+  color: #000000;
+}
+
 .sidebar {
   color: white;
   grid-area: sidebar;
@@ -120,13 +124,13 @@ header .search-container {
   text-align: center;
 }
 
-.sidebar-tags{
-  width:100%;
+.sidebar-tags {
+  width: 100%;
   /* transition: 0.3s; */
 }
 
-.sidebar-chart{
-  width:0%;
+.sidebar-chart {
+  width: 0%;
   /* background-color: red; */
   /* transition: 0.3s; */
 }
@@ -208,9 +212,9 @@ nav {
 }
 
 .closebtn {
-	position: relative;
-	top: 0;
-	right: 25px;
-	font-size: 36px;
-	margin-left: 690px;
+  position: relative;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 690px;
 }
