@@ -119,6 +119,31 @@ document.getElementById('searchbox').onkeypress = function(e){
     }
 }
 
+var modal = document.getElementById("popup");
+
+// Get the button that opens the modal
+var btn = document.getElementById("infoBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 // create the map
 function createMap(lat,lon,zl){
 	map = L.map('map').setView([lat,lon], zl);
@@ -325,6 +350,7 @@ function loadAndMapData(index) {
         if(showing.every(v => v === false)) {
             document.getElementById('toggleChart').style.background = 'rgb(227, 222, 218)';
             document.getElementById('toggleChart').style.color = '#616161';
+            document.getElementById('toggleChart').style.cursor = 'auto';
             chartclosed = true;
             document.getElementById("body").style.gridTemplateColumns = "20% 80%";
             document.getElementById("sidebar-tags").style.width = "100%";
@@ -333,6 +359,7 @@ function loadAndMapData(index) {
         else if(chartclosed) {
             document.getElementById('toggleChart').style.background = 'rgb(245, 241, 237)';
             document.getElementById('toggleChart').style.color = 'black';
+            document.getElementById('toggleChart').style.cursor = 'pointer';
         }
         renderLegend();
         return;
@@ -350,6 +377,7 @@ function loadAndMapData(index) {
     if(showing.every(v => v === false)) {
         document.getElementById('toggleChart').style.background = 'rgb(227 222 218)';
         document.getElementById('toggleChart').style.color = '#616161';
+        document.getElementById('toggleChart').style.cursor = 'auto';
         chartclosed = true;
         document.getElementById("body").style.gridTemplateColumns = "20% 80%";
         document.getElementById("sidebar-tags").style.width = "100%";
@@ -358,6 +386,7 @@ function loadAndMapData(index) {
     else if(chartclosed) {
         document.getElementById('toggleChart').style.background = 'rgb(245, 241, 237)';
         document.getElementById('toggleChart').style.color = 'black';
+        document.getElementById('toggleChart').style.cursor = 'pointer';
     }
     renderLegend();
 }
@@ -723,7 +752,7 @@ function getRandomColor() {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
+}
 
 function toggleChart(){
     if(showing.every(v => v === false)) {
