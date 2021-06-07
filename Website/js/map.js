@@ -3,6 +3,7 @@ let map;
 let lat = 0;
 let lon = 0;
 let zl = 2;
+let searched = false;
 
 let toggled = false;
 let chartclosed = true;
@@ -121,7 +122,6 @@ document.getElementById('searchbox').onkeypress = function(e){
 // create the map
 function createMap(lat,lon,zl){
 	map = L.map('map').setView([lat,lon], zl);
-
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
@@ -129,9 +129,9 @@ function createMap(lat,lon,zl){
 
 function sideBarItems(data) {
     data.forEach(function(item, index) {
-        $(".sidebar-tags").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleGenreSidebarItem(${index});toggleChoroplethSidebarItem(2);">${item.name}</div>`);
+        $(".sidebar-tags").append(`<div class="${showing[index] ? "sidebar-item-active" : "sidebar-item"}" id="${item.name}" onclick="loadAndMapData(${index});toggleGenreSidebarItem(${index});">${item.name}</div>`);
     });
-    $(".sidebar-tags").append(`<div class="sidebar-title">Artists</div>`);
+    //$(".sidebar-tags").append(`<div class="sidebar-title">Artists</div>`);
 }
 
 function toggleChoroplethSidebarItem(index) {
@@ -322,6 +322,18 @@ function loadAndMapData(index) {
         }
         markers[index].addTo(map);
         showing[index] = true;
+        if(showing.every(v => v === false)) {
+            document.getElementById('toggleChart').style.background = 'rgb(227, 222, 218)';
+            document.getElementById('toggleChart').style.color = '#616161';
+            chartclosed = true;
+            document.getElementById("body").style.gridTemplateColumns = "20% 80%";
+            document.getElementById("sidebar-tags").style.width = "100%";
+            document.getElementById("sidebar-dashboard").style.width = "00%";
+        }
+        else if(chartclosed) {
+            document.getElementById('toggleChart').style.background = 'rgb(245, 241, 237)';
+            document.getElementById('toggleChart').style.color = 'black';
+        }
         renderLegend();
         return;
     }
@@ -335,6 +347,18 @@ function loadAndMapData(index) {
         showing[index] = true;
         renderDashboard();
     }
+    if(showing.every(v => v === false)) {
+        document.getElementById('toggleChart').style.background = 'rgb(227 222 218)';
+        document.getElementById('toggleChart').style.color = '#616161';
+        chartclosed = true;
+        document.getElementById("body").style.gridTemplateColumns = "20% 80%";
+        document.getElementById("sidebar-tags").style.width = "100%";
+        document.getElementById("sidebar-dashboard").style.width = "00%";
+    }
+    else if(chartclosed) {
+        document.getElementById('toggleChart').style.background = 'rgb(245, 241, 237)';
+        document.getElementById('toggleChart').style.color = 'black';
+    }
     renderLegend();
 }
 
@@ -342,7 +366,12 @@ function renderLegend() {
     map.removeLayer(legend);
     legend.onAdd = function () {
         var div = L.DomUtil.create('div', 'info legend');
-        labels = ['<strong style="font-family:Montserrat">Legend</strong>']
+        if(showing.every(v => v === false)) {
+            labels = ['']
+        }
+        else {
+            labels = ['<strong style="font-family:Montserrat">Legend</strong>']
+        }
         for (var i = 0; i < data.length; i++) {
             if(showing[i]) {
                 div.innerHTML += 
@@ -362,9 +391,6 @@ function renderLegend() {
 }
 
 function renderDashboard(){
-    // clear dashboard
-    //$('.sidebar-chart').empty();
-    console.log("render");
     var showsSeries = [];
     var popularitySeries = [];
     var colors = [];
@@ -609,12 +635,16 @@ function songKickArtistSearch(artist) {
                     return response.json();
                 })
                 .then((spotifyJson) => {
+                    if(!searched) {
+                        searched = true;
+                        $(".sidebar-tags").append(`<div class="sidebar-title">Artists</div>`);
+                    }
                     if(!spotifyJson.artists || !spotifyJson.artists.total) {
                         data.push({
                             "name": artistName,
                             "skid": artistId,
                         });
-                        $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);renderDashboard();">${artistName}</div>`);
+                        $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});renderDashboard();">${artistName}</div>`);
                         return;
                     }
                     data.push({
@@ -622,7 +652,7 @@ function songKickArtistSearch(artist) {
                         "skid": artistId,
                         "spid": spotifyJson.artists.items[0].id,
                     });
-                    $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});toggleChoroplethSidebarItem(2);renderDashboard();">${artistName}</div>`);
+                    $(".sidebar-tags").append(`<div class="${showing[data.length-1] ? "sidebar-item-active" : "sidebar-item"}" id="${artistName}" onclick="loadAndMapData(${data.length-1});toggleGenreSidebarItem(${data.length-1});renderDashboard();">${artistName}</div>`);
                 });
             });
         }
@@ -673,7 +703,7 @@ function songKick(index, url, artist, color, year, curr, max) {
 			if((myJson.resultsPage.page-1) * 50 + count < myJson.resultsPage.totalEntries) {
 				songKick(index, url+`&page=${myJson.resultsPage.page + 1}`, artist, color, year, curr, max);
 			}
-            toggleChoroplethSidebarItem(2);
+            //toggleChoroplethSidebarItem(2);
 		}
 	})
     .then(() => {
@@ -684,6 +714,40 @@ function songKick(index, url, artist, color, year, curr, max) {
             setTimeout(renderDashboard, 6000);
         }
     })
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+function toggleChart(){
+    if(showing.every(v => v === false)) {
+        return;
+    }
+    //var toggleChart = document.getElementById("toggleChart");
+    //toggleChart.classList.toggle("sidebar-item-active");
+    if(chartclosed){
+        document.getElementById('toggleChart').style.background = 'rgb(190, 185, 180)';
+        document.getElementById('toggleChart').style.color = 'black';
+        document.getElementById("body").style.gridTemplateColumns = "50% 50%";
+        document.getElementById("sidebar-tags").style.width = "30%";
+        document.getElementById("sidebar-dashboard").style.width = "70%";
+        renderDashboard();
+        chartclosed = !chartclosed;
+    }
+    else{
+        document.getElementById('toggleChart').style.background = 'rgb(245, 241, 237)';
+        document.getElementById('toggleChart').style.color = 'black';
+        document.getElementById("body").style.gridTemplateColumns = "20% 80%";
+        document.getElementById("sidebar-tags").style.width = "100%";
+        document.getElementById("sidebar-dashboard").style.width = "00%";
+        chartclosed = !chartclosed;
+    }
 }
 
 function incrementStateShows(index, year, state) {
@@ -1113,32 +1177,5 @@ function incrementGenreShows(index, year, month, popularity) {
                 genrePopularity2019[index][11] += popularity;
                 break;
         }
-    }
-}
-
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
-function toggleChart(){
-    var toggleChart = document.getElementById("toggleChart");
-    toggleChart.classList.toggle("sidebar-item-active");
-    if(chartclosed){
-        document.getElementById("body").style.gridTemplateColumns = "50% 50%";
-        document.getElementById("sidebar-tags").style.width = "30%";
-        document.getElementById("sidebar-dashboard").style.width = "70%";
-        renderDashboard();
-        chartclosed = !chartclosed;
-    }
-    else{
-        document.getElementById("body").style.gridTemplateColumns = "20% 80%";
-        document.getElementById("sidebar-tags").style.width = "100%";
-        document.getElementById("sidebar-dashboard").style.width = "00%";
-        chartclosed = !chartclosed;
     }
 }

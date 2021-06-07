@@ -39,6 +39,9 @@
             <input type="text" id = "searchbox" placeholder="Search for an artist">
             <button onclick="searchArtist();"><i class="fa fa-search"></i></button>
         </div>
+		<div style="font-size: 24px;">
+			<i class="fa fa-info-circle"></i>
+		</div>
         <nav>
             <ul class = "nav_links" >
                 <li><a href=""><a href="contact.html">Contact</a></li>
@@ -49,10 +52,10 @@
     </header>
 		<div class="sidebar">
 			<div class ="sidebar-tags" id="sidebar-tags">
-				<div class="sidebar-item" id="toggleChart" onclick="toggleChart()">Show Chart</div>
-				<div class="sidebar-title">Choropleth (US)</div>
+				<div class="sidebar-item" id="toggleChart" onclick="toggleChart()" style="background: rgb(227 222 218); color: #616161;">Show Chart</div>
+				<!--<div class="sidebar-title">Choropleth (US)</div>
 				<div class="sidebar-item" id="choropleth2019" onclick="toggleChoroplethSidebarItem(0);">2019</div>
-				<div class="sidebar-item" id="choropleth2020" onclick="toggleChoroplethSidebarItem(1);">2020</div>
+				<div class="sidebar-item" id="choropleth2020" onclick="toggleChoroplethSidebarItem(1);">2020</div>-->
 				<div class="sidebar-title">Genres</div>
 			</div>
 			<div class="sidebar-dashboard" id="sidebar-dashboard">
